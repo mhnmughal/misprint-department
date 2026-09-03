@@ -50,6 +50,16 @@ The iOS build needs macOS and Xcode.
 Start with `SUMMARY_BANK.md` (living status), then `PROJECT_CONTEXT.md`,
 `AI_RULES.md`, and `Assets/Documentation/`.
 
+## App Store listing
+
+Ready-to-paste App Store Connect metadata (name, subtitle and keyword options
+with character counts, a US English description with no em dashes, category
+picks, age rating and privacy answers, guideline check) is in
+[`Assets/Documentation/APP_STORE_LISTING.md`](Assets/Documentation/APP_STORE_LISTING.md).
+
+Interactive version with per-field copy buttons:
+<https://claude.ai/code/artifact/9c25ae5b-adc7-4403-9b95-7d60862da87d>
+
 ## Audio and typography
 
 All sound effects are generated procedurally in-project
