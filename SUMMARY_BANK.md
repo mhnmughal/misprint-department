@@ -326,6 +326,20 @@ Validate all levels: menu `Misprint/Validate All Levels` (7 → Training + Ch1).
   assemblies intact, bridge port 7890 closed. Manifest now 32 deps.
 - Result: PASS
 
+## REPOSITORY
+Private GitHub repo: **github.com/mhnmughal/misprint-department** (branch
+`main`). Unity `.gitignore` + `.gitattributes` + `README.md` at the root.
+Commit or push only when asked.
+
+## APP STORE METADATA
+A ready-to-paste App Store Connect kit (name / subtitle / keyword options
+with character counts, a fresh US-English description with no em dashes,
+category, age rating, privacy answers, guideline check) is in the Claude
+artifact `9c25ae5b-adc7-4403-9b95-7d60862da87d`. Recommended category:
+**Puzzle** (primary) / **Strategy** (secondary). Outstanding items the
+developer must supply: a Support URL, a hosted privacy policy, screenshots,
+and the price decision (the app ships with no in-app purchase either way).
+
 ## NOTE FOR NEXT AGENT
 The Unity MCP bridge (`com.anklebreaker.unity-mcp`) has been **removed** from
 this project. `unity_*` MCP tools will NOT work until it is re-added:
