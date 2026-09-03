@@ -1,0 +1,26 @@
+{
+    "name": "MisprintDepartment.Tests.EditMode",
+    "rootNamespace": "MisprintDepartment.Tests",
+    "references": [
+        "MisprintDepartment.Core",
+        "MisprintDepartment.Game",
+        "MisprintDepartment.Editor",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1409745dc995fa49bcfa6d8ac81f9be, type: 3}
+  m_Name: LevelDatabase
+  m_EditorClassIdentifier: MisprintDepartment.Game::MisprintDepartment.Game.LevelDatabase
+  trainingLevel: {fileID: 11400000, guid: 0003b0a5c63e80646ad32af93685a07a, type: 2}
+  levels:
+  - {fileID: 11400000, guid: 6d0b84fe445af5a4c8ce259c1ba56e07, type: 2}
+  - {fileID: 11400000, guid: dac67b083eebb2447b9c7b0a17597f68, type: 2}
+  - {fileID: 11400000, guid: 94d79dca90871ce40b6b1e96bf8d9abd, type: 2}
+  - {fileID: 11400000, guid: 9e81b22192cf2d449acd1808822b9ffc, type: 2}
+  - {fileID: 11400000, guid: 6bc41b16801abbb4d9d95436a38678e0, type: 2}
+  - {fileID: 11400000, guid: 187894b4434da9144a4f1638331fbee8, type: 2}
+  - {fileID: 11400000, guid: 59dab8ee759da264096dce4403500456, type: 2}
+  - {fileID: 11400000, guid: 48272ae3973d0e449ac48030412ff3fe, type: 2}
+  - {fileID: 11400000, guid: a216ddcfe11923f44980b9c002ed6227, type: 2}
+  - {fileID: 11400000, guid: 2a47140d6c0d90547b688e0b1dacbdaf, type: 2}
+  - {fileID: 11400000, guid: ddabca57ce0cb2646b25caf0532d912d, type: 2}
+  - {fileID: 11400000, guid: 4f626545fd95ec84da5e3b2285585740, type: 2}

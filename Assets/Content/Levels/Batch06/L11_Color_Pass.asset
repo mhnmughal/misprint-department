@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de93039eb3ba7844b5be6a2ed630556, type: 3}
+  m_Name: L11_Color_Pass
+  m_EditorClassIdentifier: MisprintDepartment.Core::MisprintDepartment.Core.LevelDefinition
+  levelId: 11
+  chapter: 6
+  displayTitle: Color Pass
+  board:
+    width: 5
+    height: 5
+    blocked: []
+    start:
+      x: 0
+      y: 0
+    startFacing: 0
+    destination:
+      x: 2
+      y: 3
+  cleanStrip:
+  - command: 0
+    flags: 0
+  - command: 0
+    flags: 0
+  - command: 0
+    flags: 0
+  - command: 2
+    flags: 0
+  - command: 0
+    flags: 0
+  - command: 0
+    flags: 0
+  defect:
+    rid: 8326458696304427445
+  allowedTools: 0500000001000000
+  correctionBudget: 3
+  referenceSolution:
+  - tool: 5
+    indexA: 1
+    indexB: 0
+    payload: 0
+    amount: 0
+  - tool: 1
+    indexA: 3
+    indexB: 0
+    payload: 2
+    amount: 0
+  par: 2
+  tutorialKeys:
+  - defect.colorpass
+  references:
+    version: 2
+    RefIds:
+    - rid: 8326458696304427445
+      type: {class: CompositeDefect, ns: MisprintDepartment.Core, asm: MisprintDepartment.Core}
+      data:
+        rules:
+        - rid: 8326458696304427446
+        - rid: 8326458696304427447
+    - rid: 8326458696304427446
+      type: {class: ColorPassDefect, ns: MisprintDepartment.Core, asm: MisprintDepartment.Core}
+      data:
+        pass: 0
+        indices: 01000000
+    - rid: 8326458696304427447
+      type: {class: MirrorDefect, ns: MisprintDepartment.Core, asm: MisprintDepartment.Core}
+      data:
+        selection: 3
+        nth: 2
+        indices: 03000000
+        mirrorMoveReverse: 0

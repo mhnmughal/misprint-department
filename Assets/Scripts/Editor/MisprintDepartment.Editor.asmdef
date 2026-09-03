@@ -1,0 +1,22 @@
+{
+    "name": "MisprintDepartment.Editor",
+    "rootNamespace": "MisprintDepartment.Editor",
+    "references": [
+        "MisprintDepartment.Core",
+        "MisprintDepartment.Game",
+        "Unity.TextMeshPro",
+        "UnityEngine.UI",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

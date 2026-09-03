@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de93039eb3ba7844b5be6a2ed630556, type: 3}
+  m_Name: L05_Double_Impression
+  m_EditorClassIdentifier: MisprintDepartment.Core::MisprintDepartment.Core.LevelDefinition
+  levelId: 5
+  chapter: 3
+  displayTitle: Double Impression
+  board:
+    width: 5
+    height: 5
+    blocked: []
+    start:
+      x: 0
+      y: 0
+    startFacing: 0
+    destination:
+      x: 2
+      y: 4
+  cleanStrip:
+  - command: 0
+    flags: 0
+  - command: 0
+    flags: 0
+  - command: 0
+    flags: 0
+  - command: 0
+    flags: 0
+  - command: 2
+    flags: 0
+  - command: 0
+    flags: 0
+  - command: 0
+    flags: 0
+  defect:
+    rid: 8326458696304427437
+  allowedTools: 03000000
+  correctionBudget: 3
+  referenceSolution:
+  - tool: 3
+    indexA: 4
+    indexB: 0
+    payload: 0
+    amount: 0
+  - tool: 3
+    indexA: 6
+    indexB: 0
+    payload: 0
+    amount: 0
+  par: 2
+  tutorialKeys:
+  - tool.crossout
+  - defect.duplicate
+  references:
+    version: 2
+    RefIds:
+    - rid: 8326458696304427437
+      type: {class: DuplicateDefect, ns: MisprintDepartment.Core, asm: MisprintDepartment.Core}
+      data:
+        trigger: 0
+        nth: 3

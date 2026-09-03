@@ -1,0 +1,35 @@
+* text=auto
+
+# Unity text assets - keep as text, use Unity's smart merge where configured
+*.cs text diff=csharp
+*.shader text
+*.cginc text
+*.hlsl text
+*.json text
+*.md text
+*.txt text
+*.uxml text
+*.uss text
+
+# Unity YAML assets
+*.unity text linguist-generated
+*.asset text linguist-generated
+*.prefab text linguist-generated
+*.mat text linguist-generated
+*.meta text linguist-generated
+*.controller text linguist-generated
+*.anim text linguist-generated
+*.asmdef text
+*.inputactions text
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.wav binary
+*.mp3 binary
+*.ogg binary
+*.ttf binary
+*.otf binary
+*.fbx binary
+*.mixer binary

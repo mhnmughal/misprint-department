@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de93039eb3ba7844b5be6a2ed630556, type: 3}
+  m_Name: L08_Registration_Drift
+  m_EditorClassIdentifier: MisprintDepartment.Core::MisprintDepartment.Core.LevelDefinition
+  levelId: 8
+  chapter: 4
+  displayTitle: Registration Drift
+  board:
+    width: 6
+    height: 6
+    blocked: []
+    start:
+      x: 0
+      y: 0
+    startFacing: 1
+    destination:
+      x: 4
+      y: 3
+  cleanStrip:
+  - command: 0
+    flags: 0
+  - command: 0
+    flags: 0
+  - command: 1
+    flags: 0
+  - command: 0
+    flags: 0
+  - command: 0
+    flags: 0
+  - command: 0
+    flags: 0
+  - command: 2
+    flags: 0
+  - command: 0
+    flags: 0
+  - command: 0
+    flags: 0
+  defect:
+    rid: 8326458696304427440
+  allowedTools: 0400000002000000
+  correctionBudget: 3
+  referenceSolution:
+  - tool: 4
+    indexA: 3
+    indexB: 0
+    payload: 0
+    amount: -1
+  - tool: 2
+    indexA: 6
+    indexB: 8
+    payload: 0
+    amount: 0
+  par: 2
+  tutorialKeys: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 8326458696304427440
+      type: {class: CompositeDefect, ns: MisprintDepartment.Core, asm: MisprintDepartment.Core}
+      data:
+        rules:
+        - rid: 8326458696304427441
+        - rid: 8326458696304427442
+    - rid: 8326458696304427441
+      type: {class: ShiftDefect, ns: MisprintDepartment.Core, asm: MisprintDepartment.Core}
+      data:
+        selection: 3
+        nth: 4
+        indices: 02000000
+        direction: 1
+    - rid: 8326458696304427442
+      type: {class: SwapDefect, ns: MisprintDepartment.Core, asm: MisprintDepartment.Core}
+      data:
+        a: 6
+        b: 8

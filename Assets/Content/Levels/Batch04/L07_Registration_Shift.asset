@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de93039eb3ba7844b5be6a2ed630556, type: 3}
+  m_Name: L07_Registration_Shift
+  m_EditorClassIdentifier: MisprintDepartment.Core::MisprintDepartment.Core.LevelDefinition
+  levelId: 7
+  chapter: 4
+  displayTitle: Registration Shift
+  board:
+    width: 6
+    height: 5
+    blocked: []
+    start:
+      x: 0
+      y: 0
+    startFacing: 1
+    destination:
+      x: 4
+      y: 2
+  cleanStrip:
+  - command: 0
+    flags: 0
+  - command: 0
+    flags: 0
+  - command: 0
+    flags: 0
+  - command: 0
+    flags: 0
+  - command: 1
+    flags: 0
+  - command: 0
+    flags: 0
+  - command: 0
+    flags: 0
+  defect:
+    rid: 8326458696304427439
+  allowedTools: 04000000
+  correctionBudget: 2
+  referenceSolution:
+  - tool: 4
+    indexA: 5
+    indexB: 0
+    payload: 0
+    amount: -1
+  par: 1
+  tutorialKeys:
+  - tool.shift
+  - defect.shift
+  references:
+    version: 2
+    RefIds:
+    - rid: 8326458696304427439
+      type: {class: ShiftDefect, ns: MisprintDepartment.Core, asm: MisprintDepartment.Core}
+      data:
+        selection: 1
+        nth: 5
+        indices: 
+        direction: 1
