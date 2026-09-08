@@ -220,16 +220,30 @@ Landscape. Actual gameplay only, no device frames with fake status bars, no
 "download" or price text baked in (Guideline 2.3.3). Required set: iPhone
 6.9-inch and, if the app ships on iPad, iPad 13-inch.
 
-1. **The workshop.** The proof bench with the machine, the lamp, and the
-   START INSPECTION control. Sets the world in one frame.
-2. **A job, mid-inspection.** The printed route strip up top, the defect card
-   on the right, the correction tray with the tools for that batch.
-3. **Proof running.** The carriage part way along the board with a command
-   highlighted on the strip.
-4. **Proof approved.** The result card with the rotated MASTER PROOF stamp and
-   the corrections-used line.
-5. **Job files.** The batch rack showing job tickets, lock state, and earned
-   ratings.
+**A captured set is in `Screenshots/`** (2868 x 1320, PNG/RGB, iPhone 6.9-inch
+landscape — the size ASC requires and auto-scales down; `Screenshots/` is
+gitignored). Recommended upload order, strongest first:
+
+1. `03_inspection.png` — a job mid-inspection: printed route strip, the
+   TODAY'S DEFECT card, the correction tray, the RUN PROOF lever.
+2. `05_proof_approved.png` — the result card with the rotated MASTER PROOF
+   stamp, corrections-used vs par, and the batch sign-off line.
+3. `02_job_files.png` — the job-ticket rack: 6 batches, PASS stamps and
+   earned ratings.
+4. `06_settings.png` — the maintenance card: music / sound / interface
+   sliders, haptics, reset progress.
+5. `04_proof_running.png` — the corrected route executing, a command
+   highlighted, the carriage part way to the target.
+6. `01_workshop.png` — the proof bench and the CONTINUE INSPECTION control.
+
+To regenerate: re-add `com.unity.recorder`, restore the
+`Assets/Scripts/Editor/Store/` tool from git history, and run
+**Misprint / Store / Capture App Store Screenshots (2868x1320)**.
+
+Polish notes before final upload: `01_workshop` shows the 3D bench as flat
+primitives (low detail); on `02_job_files` the PASS stamp overlaps the small
+batch-label line. Neither blocks submission; both are art/layout passes if the
+listing needs to shine.
 
 Optional caption text overlaid on the images is fine if it describes what the
 screen does. Keep it to a few words per shot.
@@ -254,7 +268,6 @@ screen does. Keep it to a few words per shot.
 ## Still to supply before submitting
 
 - A **Support URL** (page with a contact email).
-- The **screenshot set** (five shots described in section 09).
 - The **price** (the app ships with no in-app purchase either way).
 
 Done: privacy policy hosted at

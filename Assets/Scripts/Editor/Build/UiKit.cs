@@ -22,7 +22,7 @@ namespace MisprintDepartment.Editor.Build
         public static readonly Color WarnRed     = new Color32(0xB5, 0x3A, 0x2E, 0xFF);
         public static readonly Color Teal        = new Color32(0x3F, 0x8E, 0x92, 0xFF);
         public static readonly Color LampWarm    = new Color32(0xF3, 0xC9, 0x7A, 0xFF);
-        public static readonly Color PanelBg     = new Color32(0x30, 0x2C, 0x27, 0xF0);
+        public static readonly Color PanelBg     = new Color32(0x2A, 0x26, 0x21, 0xFF);
 
         public static readonly Color InkSoft     = new Color32(0x5A, 0x53, 0x49, 0xFF);
         public static readonly Color Shadow      = new Color32(0x1A, 0x18, 0x16, 0x80);

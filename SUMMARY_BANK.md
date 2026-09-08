@@ -245,6 +245,32 @@ Validate all levels: menu `Misprint/Validate All Levels` (7 → Training + Ch1).
 
 ## MCP CHANGE LOG
 
+### MCP-0028
+- Date: 2026-09-08
+- Agent: Claude (Sonnet 5), session "reviewer video + privacy policy"
+- Scene/Asset: `Assets/Scripts/Editor/Build/UiKit.cs`,
+  `Assets/Scenes/MainWorkshop.unity`, `Documentation/APP_STORE_LISTING.md`,
+  `.gitignore`. (Transient: `Assets/Scripts/Editor/Store/` — added, used,
+  removed; `com.unity.recorder` + `com.anklebreaker.unity-mcp` — re-added,
+  used, removed.)
+- Change: Captured the **App Store Connect screenshot set** — 6 PNGs at
+  2868x1320 (iPhone 6.9" landscape), RGB, in `Screenshots/` (now gitignored):
+  03_inspection, 05_proof_approved, 02_job_files, 06_settings,
+  04_proof_running, 01_workshop. A throwaway Unity Recorder session pumped the
+  play loop (a Windows editor freezes play mode when unfocused; plain
+  `ScreenCapture` never flushed) while a sequencer drove the game to each
+  state. Tool + its asmdef + the Recorder/MCP packages were removed after —
+  restore the tool from git history + re-add `com.unity.recorder` to
+  re-shoot. Also: `UiKit.PanelBg` 0xF0→0xFF alpha (menu panels were 94%
+  opaque, letting the workshop bleed through Job Files / Settings) + slightly
+  darker; MainWorkshop scene rebuilt.
+- Reason: user asked for App Store Connect screenshots.
+- Validation: 6 files verified `2868 x 1320, 8-bit RGB, PNG` (ASC spec).
+  03/05/06 are clean; 02 has the PASS stamp overlapping the batch label;
+  01 shows the 3D bench as flat primitives — noted in APP_STORE_LISTING §09
+  as art/layout polish, not blockers.
+- Result: PASS
+
 ### MCP-0027
 - Date: 2026-09-08
 - Agent: Claude (Sonnet 5), session "reviewer video + privacy policy"
@@ -513,8 +539,10 @@ artifact `9c25ae5b-adc7-4403-9b95-7d60862da87d` and in
   `Recordings/MisprintDepartment_ReviewerDemo_001.mp4` (2868x1320, H.264 +
   audio, 2:02; gitignored, delivered to the user). The one-shot recording
   tool that produced it was removed again in MCP-0023.
-- Still outstanding from the developer: a Support URL, the screenshot set,
-  and the price decision (no in-app purchase either way).
+- Screenshot set: captured 2026-09-08 (MCP-0028) — 6 PNGs at 2868x1320 in
+  `Screenshots/` (gitignored, delivered to the user).
+- Still outstanding from the developer: a Support URL and the price decision
+  (no in-app purchase either way).
 
 ## NOTE FOR NEXT AGENT
 The Unity MCP bridge (`com.anklebreaker.unity-mcp`) has been added and removed
