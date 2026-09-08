@@ -236,14 +236,33 @@ gitignored). Recommended upload order, strongest first:
    highlighted, the carriage part way to the target.
 6. `01_workshop.png` — the proof bench and the CONTINUE INSPECTION control.
 
-To regenerate: re-add `com.unity.recorder`, restore the
-`Assets/Scripts/Editor/Store/` tool from git history, and run
-**Misprint / Store / Capture App Store Screenshots (2868x1320)**.
+To regenerate: re-add `com.unity.recorder`, recreate the
+`Assets/Scripts/Editor/Store/` tool (see MCP-0028 in SUMMARY_BANK), and run
+**Misprint / Store / Capture — iPhone 6.9"**.
 
 Polish notes before final upload: `01_workshop` shows the 3D bench as flat
 primitives (low detail); on `02_job_files` the PASS stamp overlaps the small
 batch-label line. Neither blocks submission; both are art/layout passes if the
 listing needs to shine.
+
+### iPad — not ready
+
+The Xcode project targets `TARGETED_DEVICE_FAMILY = 1,2` (iPhone + iPad), so
+ASC would ask for **13-inch iPad** screenshots (2732 x 2048 landscape).
+Captured at that size (2026-09-08), the UI clips: the JOB FILES / MACHINE
+MANUAL / SETTINGS nav buttons, the TODAY'S DEFECT card, and the INTERFACE
+slider all run off the right edge. The canvas is tuned for wide phone aspect
+(1920x1080 reference, `MatchWidthOrHeight = 0.5`) and overflows at iPad 4:3.
+
+**Two options for v1:**
+1. **Ship iPhone-only** — set `PlayerSettings.iOS.targetDevice =
+   iOSTargetDevice.iPhoneOnly` (add to
+   `MisprintBuild.ConfigurePlayerSettings`), rebuild. No iPad screenshots
+   needed. Fastest path.
+2. **Support iPad** — a responsive-layout pass on the scene builders: re-anchor
+   the right-edge elements inside the safe area, cap the defect-card width,
+   pull the workshop side buttons in. Then re-capture with
+   **Misprint / Store / Capture — iPad 13"**.
 
 Optional caption text overlaid on the images is fine if it describes what the
 screen does. Keep it to a few words per shot.

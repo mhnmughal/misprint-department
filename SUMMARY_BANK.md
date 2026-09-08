@@ -245,6 +245,27 @@ Validate all levels: menu `Misprint/Validate All Levels` (7 → Training + Ch1).
 
 ## MCP CHANGE LOG
 
+### MCP-0029
+- Date: 2026-09-08
+- Agent: Claude (Sonnet 5), session "reviewer video + privacy policy"
+- Scene/Asset: `Documentation/APP_STORE_LISTING.md` (§09 iPad section).
+  (Transient again: Store tool + `com.unity.recorder` + MCP bridge re-added,
+  used, removed.)
+- Change: Captured an **iPad 13" screenshot set** (2732x2048 landscape) to
+  check iPad readiness. **Finding: the UI is not iPad-ready.** On 4:3 the
+  right-edge-anchored elements overflow the screen — the JOB FILES / MACHINE
+  MANUAL / SETTINGS workshop nav buttons, the TODAY'S DEFECT gameplay card,
+  and the INTERFACE settings slider all clip off the right. Canvas is tuned
+  for wide phone aspect (1920x1080 ref, match 0.5). iPad shots were deleted
+  (not upload-worthy). Documented the two v1 options in §09: (1) ship
+  iPhone-only via `PlayerSettings.iOS.targetDevice = iOSTargetDevice.iPhoneOnly`,
+  or (2) a responsive-layout pass on the scene builders then re-capture. **Not
+  decided — needs the developer's call.**
+- Reason: user asked for iPad screenshots.
+- Validation: 6 iPad PNGs captured at 2732x2048; visual review found the
+  right-edge clipping on 3 of them.
+- Result: PASS (screenshots captured; iPad layout gap identified + documented)
+
 ### MCP-0028
 - Date: 2026-09-08
 - Agent: Claude (Sonnet 5), session "reviewer video + privacy policy"
