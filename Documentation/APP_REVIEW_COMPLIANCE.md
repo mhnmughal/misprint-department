@@ -8,36 +8,59 @@ policy)**. Verified against the actual project, not just intent.
 
 ## 1. The Xcode build itself
 
-**Cannot be produced or verified on this machine.** The project lives on
-Windows; an Xcode build, code signing, `xcarchive`/`ipa` export, Xcode
-Organizer "Validate App", and the App Store Connect upload checks are all
-macOS + Xcode only. This is a toolchain limit, not a project defect — the
-Android IL2CPP / ARM64 player build succeeds, which is strong evidence the
-iOS build will too once on a Mac.
+**The Xcode *project* is generated and was inspected here (2026-09-08).**
+Unity on Windows can emit the `Build/iOS/` Xcode project (Unity-iPhone.xcodeproj
++ the IL2CPP-generated C++). What still needs a Mac: compiling that to an app,
+code signing, `xcarchive`/`ipa` export, Xcode Organizer "Validate App", and
+the App Store Connect upload checks. The Android IL2CPP / ARM64 player build
+also succeeds, which is strong evidence the iOS compile will too once on a Mac.
 
-Player Settings are already iOS-ready: IL2CPP, landscape only, bundle id
-`com.misprintdepartmentteam.misprintdepartment`, version 1.0 / build 1,
-deployment target iOS 15.0, original 1024² icon assigned, no ARKit, no
-background modes, no custom URL schemes.
+### What the generated project looks like (verified)
+
+| Item | Value |
+|---|---|
+| `CFBundleIdentifier` | `com.misprintdepartmentteam.misprintdepartment` |
+| `CFBundleShortVersionString` / `CFBundleVersion` | `1.0` / `1` |
+| `CFBundleDisplayName` | `Misprint Department` |
+| Orientation | `UIInterfaceOrientationLandscapeRight` only; `UIRequiresFullScreen = true` |
+| Deployment target | iOS 15.0; `TARGETED_DEVICE_FAMILY = 1,2` |
+| `NS*UsageDescription` keys | **none** (no camera/mic/location/contacts/photos/Bluetooth/motion/tracking prompts) |
+| `NSAppTransportSecurity`, `NSAllowsArbitraryLoads` | **not present** (no networking) |
+| `CFBundleURLTypes`, `UIBackgroundModes` | **not present** |
+| `.entitlements` file | **none** (no push, no associated domains, no capabilities) |
+| `ITSAppUsesNonExemptEncryption` | `false` — set automatically by `IosPostProcess` (see §4) |
+| Engine privacy manifest | `UnityFramework/PrivacyInfo.xcprivacy` — declares SystemBootTime, DiskSpace, UserDefaults (`CA92.1`), FileTimestamp required-reason APIs |
+| App privacy manifest | `PrivacyInfo.xcprivacy` on the Unity-iPhone target — `NSPrivacyTracking = false`, empty tracking domains / collected data / API arrays. Added automatically by `IosPostProcess` |
+| `ENABLE_BITCODE` | `NO` (correct — Apple deprecated bitcode) |
+| `boot.config` | no analytics / Unity Connect entries |
+
+### Caveat — regenerate the submission build with the MCP bridge removed
+
+The `Build/iOS` folder generated here was built with `com.anklebreaker.unity-mcp`
+in the manifest. That bridge pulls `com.unity.collections` →
+`com.unity.test-framework.performance`, which drops a `PerformanceTestRunInfo.json`
+TextAsset into `Assets/Resources/` at build time and compiles the
+`Unity.PerformanceTesting` assembly into the player. Neither belongs in a
+shipping app. **Before the real submission build, remove
+`com.anklebreaker.unity-mcp` from `Packages/manifest.json`** (as in MCP-0023),
+let the package manager re-resolve, then build — that removes both.
 
 ### To build + verify on a Mac
 
-1. Copy the repo to a Mac with Unity 6000.3.19f1 (same version) + iOS Build
-   Support, and Xcode installed.
-2. `Misprint / Build / 0 · REBUILD EVERYTHING` (regenerates assets + scenes +
-   player settings), then `File > Build Settings > iOS > Build` to emit the
-   Xcode project.
-3. Open `Unity-iPhone.xcodeproj`, set the Team / signing, set
-   `ITSAppUsesNonExemptEncryption = NO` (see §4), Product > Archive.
-4. Xcode Organizer > **Validate App** — this is the "verify" step. It runs
-   Apple's static checks (Info.plist, entitlements, icon set, bitcode/arch,
-   privacy manifest). Fix anything it flags, then Distribute.
-5. Alternative to owning a Mac: Xcode Cloud, or a hosted Mac
-   (MacStadium / Scaleway / AWS EC2 mac). Unity Build Automation can also
-   produce the archive.
+1. Copy the repo to a Mac with Unity 6000.3.19f1 + iOS Build Support and Xcode.
+2. Remove `com.anklebreaker.unity-mcp` from `Packages/manifest.json` (see the
+   caveat above), then `Misprint / Build / 0 · REBUILD EVERYTHING`, then
+   `File > Build Settings > iOS > Build`.
+3. Open `Unity-iPhone.xcodeproj`, set the Team / signing, Product > Archive.
+   `ITSAppUsesNonExemptEncryption` and the app privacy manifest are already
+   handled by `IosPostProcess` — no manual plist edit needed.
+4. Xcode Organizer > **Validate App** — Apple's static checks (Info.plist,
+   entitlements, icon set, arch, privacy manifest). Then Distribute.
+5. No Mac? Xcode Cloud, a hosted Mac (MacStadium / Scaleway / AWS EC2 mac), or
+   Unity Build Automation.
 
-No shortcut avoids the Mac. Everything below is what *can* be checked now,
-and it all passes.
+No shortcut avoids the Mac for the compile + Validate step. Everything else
+below is verified and passes.
 
 ---
 
@@ -87,22 +110,21 @@ no tracking, no ATT prompt.
 injects no `NS*UsageDescription` keys into Info.plist. The app shows **zero**
 permission prompts. Nothing to justify to review under 5.1.1 / 5.1.2.
 
-### 2.4 Privacy manifest (`PrivacyInfo.xcprivacy`)
+### 2.4 Privacy manifest (`PrivacyInfo.xcprivacy`) — verified
 
-Apple requires a privacy manifest for apps and for certain "required reason"
-APIs. Misprint Department:
-- collects no data → `NSPrivacyCollectedDataTypes` is empty.
-- does no tracking → `NSPrivacyTracking = false`, `NSPrivacyTrackingDomains` empty.
-- Required-reason APIs: Unity's engine may touch `UserDefaults` (reason
-  `CA92.1`), file-timestamp, `systemBootTime`, and disk-space APIs. As of
-  Unity 6000.3 the engine ships its own `PrivacyInfo.xcprivacy` inside
-  `UnityFramework`; confirm it is present in the generated Xcode project
-  (`Unity-iPhone/PrivacyInfo.xcprivacy` and/or inside the framework). If a
-  first-party app-level manifest is missing at archive time, add one
-  declaring no collection, no tracking, and the `CA92.1` UserDefaults reason.
+Two manifests are in the generated project:
 
-**Verify at archive time on the Mac** — this is the one privacy item that
-needs the generated project to eyeball.
+1. **`UnityFramework/PrivacyInfo.xcprivacy`** (shipped by Unity) declares the
+   engine's required-reason APIs: `SystemBootTime` (35F9.1), `DiskSpace`
+   (E174.1), `UserDefaults` (CA92.1), `FileTimestamp` (0A2A.1 / C617.1). No
+   collected data, no tracking.
+2. **`PrivacyInfo.xcprivacy` on the Unity-iPhone (app) target** — added
+   automatically by `Assets/Scripts/Editor/Build/IosPostProcess.cs`:
+   `NSPrivacyTracking = false`, `NSPrivacyTrackingDomains` empty,
+   `NSPrivacyCollectedDataTypes` empty, `NSPrivacyAccessedAPITypes` empty
+   (the engine manifest covers the API reasons).
+
+Both were confirmed present and correct in the 2026-09-08 generated build.
 
 ---
 
@@ -130,17 +152,14 @@ App Store Connect; they are not code or metadata issues.
 
 ---
 
-## 4. Export compliance / encryption (App Store Connect will ask)
+## 4. Export compliance / encryption — handled automatically
 
-The app uses no encryption beyond what Apple exempts (and in fact makes no
-network calls at all). Set in the Xcode project before archiving:
-
-```
-ITSAppUsesNonExemptEncryption = NO   (Info.plist)
-```
-
-Then the ASC "Export Compliance" question is answered automatically as
-exempt, with no annual self-classification report required.
+The app uses no encryption beyond what Apple exempts (and makes no network
+calls at all). `IosPostProcess` writes `ITSAppUsesNonExemptEncryption = false`
+into the built `Info.plist` on every iOS build, so the App Store Connect
+"Export Compliance" question is answered automatically as exempt — no annual
+self-classification report, no manual plist edit on the Mac. Verified present
+in the 2026-09-08 build.
 
 ---
 
@@ -150,9 +169,9 @@ exempt, with no annual self-classification report required.
   network code, so the generated `AndroidManifest.xml` should carry no
   `INTERNET` permission — confirm in the built manifest.
 - **In-app privacy link**: if Apple insists on a tappable privacy link inside
-  the app (they sometimes do for 5.1.1), add one line to the Manual or
-  Credits panel pointing at the Google Sites URL. Low effort, authored-UI
-  only.
+  the app (they sometimes do for 5.1.1), add one line to the Manual panel
+  pointing at the Google Sites URL. Low effort, authored-UI only. (The
+  Credits panel was removed 2026-09-08.)
 - **Support URL**: still owed for the ASC listing (a page with a contact
   email — the privacy policy page's contact address can be reused).
 
@@ -163,8 +182,9 @@ exempt, with no annual self-classification report required.
 - **5.6 Developer Code of Conduct:** no issues in the build or the prepared
   metadata. Two identity attestations are the developer's to make in ASC.
 - **5.1.1 Privacy:** privacy policy is live, accurate, and consistent with a
-  binary that collects nothing and makes no network connections. Remaining
-  work is data entry in App Store Connect plus one archive-time check of the
-  privacy manifest on the Mac.
-- **Xcode build + Apple's automated verification:** blocked on macOS + Xcode.
-  Steps in §1.
+  binary that collects nothing and makes no network connections. Both privacy
+  manifests and the export-compliance flag are in the generated project.
+  Remaining work is data entry in App Store Connect.
+- **Xcode project:** generates on Windows and inspects clean (§1). Compiling
+  the binary + Xcode "Validate App" is macOS-only. Regenerate the submission
+  build with the MCP bridge removed.

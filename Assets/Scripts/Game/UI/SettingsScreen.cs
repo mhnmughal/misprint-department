@@ -15,11 +15,10 @@ namespace MisprintDepartment.Game.UI
         [SerializeField] Slider uiSlider;
         [SerializeField] Toggle hapticsToggle;
         [SerializeField] Button resetButton;
-        [SerializeField] Button creditsButton;
         [SerializeField] Button backButton;
         [SerializeField] ConfirmDialog dialog;
 
-        public event Action Back, Credits, ProgressReset;
+        public event Action Back, ProgressReset;
 
         bool _loading;
 
@@ -43,7 +42,6 @@ namespace MisprintDepartment.Game.UI
                 Services.Save.Data.hapticsEnabled = v; Services.Audio?.SetHaptics(v);
             }));
             if (resetButton != null) resetButton.onClick.AddListener(AskReset);
-            if (creditsButton != null) creditsButton.onClick.AddListener(() => Credits?.Invoke());
             if (backButton != null) backButton.onClick.AddListener(() => { Services.Save?.Save(); Back?.Invoke(); });
         }
 

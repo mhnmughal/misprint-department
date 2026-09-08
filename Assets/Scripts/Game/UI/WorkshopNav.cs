@@ -14,9 +14,7 @@ namespace MisprintDepartment.Game.UI
         [SerializeField] JobSelectScreen jobSelect;
         [SerializeField] SettingsScreen settings;
         [SerializeField] UIPanel manual;
-        [SerializeField] UIPanel credits;
         [SerializeField] Button manualBackButton;
-        [SerializeField] Button creditsBackButton;
 
         void Start()
         {
@@ -26,22 +24,18 @@ namespace MisprintDepartment.Game.UI
             workshop.JobFiles += () => Swap(workshop, jobSelect);
             workshop.Manual += () => Swap(workshop, manual);
             workshop.Settings += () => Swap(workshop, settings);
-            workshop.Credits += () => Swap(workshop, credits);
 
             jobSelect.Back += () => Swap(jobSelect, workshop);
             jobSelect.JobChosen += OpenJob;
 
             settings.Back += () => Swap(settings, workshop);
-            settings.Credits += () => Swap(settings, credits);
 
             if (manualBackButton != null) manualBackButton.onClick.AddListener(() => Swap(manual, workshop));
-            if (creditsBackButton != null) creditsBackButton.onClick.AddListener(() => Swap(credits, workshop));
 
             workshop.SetInstant(true);
             jobSelect.SetInstant(false);
             settings.SetInstant(false);
             manual.SetInstant(false);
-            credits.SetInstant(false);
             workshop.RefreshStatus();
         }
 

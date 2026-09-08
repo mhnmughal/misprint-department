@@ -7,8 +7,8 @@ is wired.
 - **Bootstrap** — first scene. Initializes `SaveController`, `AudioController`,
   applies saved settings, then loads `MainWorkshop`. Nothing gameplay here.
 - **MainWorkshop** — QC-desk main menu. Start Inspection (opens Job Select
-  overlay), Job Files (job-ticket rack = level select), Manual, Settings,
-  Credits. Authored hierarchy + prefabs.
+  overlay), Job Files (job-ticket rack = level select), Manual, Settings.
+  Authored hierarchy + prefabs.
 - **Gameplay** — single scene, data-driven. `LevelController` receives the
   selected `LevelDefinition` (via a static `GameSession` handoff), builds the
   board, prints the corrupted strip, wires the Correction Tray, runs the

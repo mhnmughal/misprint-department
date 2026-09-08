@@ -19,10 +19,10 @@ One `Canvas` per scene, Screen Space – Overlay, with:
 | Panel | Scene | Script | Notes |
 |-------|-------|--------|-------|
 | Splash | Bootstrap | — | title + "PRINT QUALITY CONTROL" + registration bar |
-| MainInteractionLayer | MainWorkshop | `WorkshopScreen` | Start/Continue proof-sheet control, current-job label, Job Files / Manual / Settings / Credits |
+| MainInteractionLayer | MainWorkshop | `WorkshopScreen` | Start/Continue proof-sheet control, current-job label, Job Files / Manual / Settings |
 | JobFilesLayer | MainWorkshop | `JobSelectScreen` + `JobTicket` prefab | Batch 01 rack, 3×2 grid, lock / rating / complete state from save |
-| SettingsLayer | MainWorkshop | `SettingsScreen` | 3 sliders + haptics toggle + Reset Progress (confirm) + Credits |
-| ManualLayer / CreditsLayer | MainWorkshop | `UIPanel` | authored static copy |
+| SettingsLayer | MainWorkshop | `SettingsScreen` | 3 sliders + haptics toggle + Reset Progress (confirm) |
+| ManualLayer | MainWorkshop | `UIPanel` | authored static copy |
 | DialogLayer | both | `ConfirmDialog` | reusable yes/no |
 | TopHUD | Gameplay | `GameplayHUD` | job id, title, correction budget, pause |
 | DefectRuleCard | Gameplay | `DefectCardUI` | red edge; shows `DefectRule.Describe()` |

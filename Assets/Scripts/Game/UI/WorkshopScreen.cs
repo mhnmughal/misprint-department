@@ -17,9 +17,8 @@ namespace MisprintDepartment.Game.UI
         [SerializeField] Button jobFilesButton;
         [SerializeField] Button manualButton;
         [SerializeField] Button settingsButton;
-        [SerializeField] Button creditsButton;
 
-        public event Action StartInspection, JobFiles, Manual, Settings, Credits;
+        public event Action StartInspection, JobFiles, Manual, Settings;
 
         protected override void Awake()
         {
@@ -28,7 +27,6 @@ namespace MisprintDepartment.Game.UI
             if (jobFilesButton != null) jobFilesButton.onClick.AddListener(() => JobFiles?.Invoke());
             if (manualButton != null) manualButton.onClick.AddListener(() => Manual?.Invoke());
             if (settingsButton != null) settingsButton.onClick.AddListener(() => Settings?.Invoke());
-            if (creditsButton != null) creditsButton.onClick.AddListener(() => Credits?.Invoke());
         }
 
         protected override void OnShow() => RefreshStatus();

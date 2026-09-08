@@ -86,7 +86,7 @@ Bootstrap(0), MainWorkshop(1), Gameplay(2). SampleScene deleted.
 | Scene | Responsibility | Status |
 |-------|----------------|--------|
 | Bootstrap | Init services + save + audio, splash, → MainWorkshop | built, verified |
-| MainWorkshop | QC-desk menu + Job Files + Settings + Manual + Credits | built, verified |
+| MainWorkshop | QC-desk menu + Job Files + Settings + Manual | built, verified |
 | Gameplay | Data-driven level play (board + strip + tray + proof) | built, verified |
 
 All three authored by editor `*SceneBuilder` scripts (menu `Misprint/Build/*`);
@@ -244,6 +244,44 @@ Validate all levels: menu `Misprint/Validate All Levels` (7 → Training + Ch1).
   Identity is sound — proceed to M3.
 
 ## MCP CHANGE LOG
+
+### MCP-0025
+- Date: 2026-09-08
+- Agent: Claude (Sonnet 5), session "reviewer video + privacy policy"
+- Scene/Asset: `Assets/Scripts/Game/UI/WorkshopScreen.cs`, `WorkshopNav.cs`,
+  `SettingsScreen.cs`, `Assets/Scripts/Editor/Build/WorkshopSceneBuilder.cs`,
+  `Assets/Scenes/MainWorkshop.unity`, new
+  `Assets/Scripts/Editor/Build/IosPostProcess.cs`, `ProjectSettings.asset`,
+  UI/architecture docs.
+- Change: (a) **Removed the Credits panel** and every button/field/event that
+  fed it — the CREDITS side button on the bench, the CREDITS row in Settings,
+  the CreditsLayer panel, `WorkshopScreen.Credits`, `SettingsScreen.Credits`,
+  `WorkshopNav.credits`/`creditsBackButton`, `CreditsText()`. MainWorkshop
+  scene regenerated via `Misprint/Build/Scene · MainWorkshop`; hierarchy
+  confirmed Credits-free. (b) New `IosPostProcess` `[PostProcessBuild]`
+  (`#if UNITY_IOS`): writes `ITSAppUsesNonExemptEncryption=false` into the
+  built Info.plist and adds an app-level `PrivacyInfo.xcprivacy`
+  (NSPrivacyTracking false, empty collected-data / tracking-domains / API
+  arrays) to the Unity-iPhone target. (c) Generated the iOS Xcode project on
+  Windows (`Build/iOS`, gitignored) and inspected it.
+- Reason: user asked to remove Credits and to "generate xcode only and verify
+  those files".
+- Validation: 0 compile errors / warnings; EditMode 48/48;
+  `Misprint/Validate All Levels` 13/13. iOS build `Succeeded` (0/0),
+  post-process log confirms both plist edits. App Info.plist verified: bundle
+  `com.misprintdepartmentteam.misprintdepartment`, v1.0/1, LandscapeRight
+  only, `UIRequiresFullScreen`, no `NS*UsageDescription`, no
+  `NSAppTransportSecurity`, no `CFBundleURLTypes`, no `UIBackgroundModes`, no
+  `.entitlements`, `ITSAppUsesNonExemptEncryption=false`. Both privacy
+  manifests present (engine `UnityFramework/PrivacyInfo.xcprivacy` +
+  app-level). **Caveat:** this build was made with the MCP bridge active,
+  which pulls `com.unity.collections` → `com.unity.test-framework.performance`
+  and packs a `PerformanceTestRunInfo.json` TextAsset + the
+  `Unity.PerformanceTesting` assembly into the player. The submission build
+  MUST be regenerated with `com.anklebreaker.unity-mcp` removed (as in
+  MCP-0023) — that drops both and yields a clean `resources.assets`.
+- Result: PASS (Credits removed; Xcode project generates + inspects clean
+  once MCP is out; compiling the binary is still macOS-only)
 
 ### MCP-0024
 - Date: 2026-09-08
@@ -430,15 +468,21 @@ artifact `9c25ae5b-adc7-4403-9b95-7d60862da87d` and in
   and the price decision (no in-app purchase either way).
 
 ## NOTE FOR NEXT AGENT
-The Unity MCP bridge (`com.anklebreaker.unity-mcp`) is **removed** again as of
-MCP-0023 (2026-09-08). It was re-added briefly for the reviewer video, then
-removed with `com.unity.recorder` + `com.unity.timeline`. `unity_*` MCP tools
-will NOT work until it is re-added: put
-`"com.anklebreaker.unity-mcp": "https://github.com/AnkleBreaker-Studio/unity-mcp-plugin.git"`
-back in `Packages/manifest.json` and let Unity resolve. Manifest is back to
-the MCP-0021-verified 32-dependency set. All build / level / validation
-tooling (`Misprint/Build/*`, `Misprint/Validate All Levels`) lives in
-`MisprintDepartment.Editor` and is unaffected.
+The Unity MCP bridge (`com.anklebreaker.unity-mcp`) has been added and removed
+several times (MCP-0021 removed it; re-added + removed for the reviewer video
+in MCP-0022/0023; **re-added again 2026-09-08 for the Credits removal + iOS
+build in MCP-0025 and left in the working tree, NOT committed**).
+`Packages/manifest.json` + `packages-lock.json` are modified.
+- The **committed** manifest is the MCP-0021-verified 32-dependency set. That
+  is the intended shipping set.
+- The MCP bridge pulls `com.unity.collections` +
+  `com.unity.test-framework.performance` transitively, which contaminate a
+  player build (`PerformanceTestRunInfo.json`, `Unity.PerformanceTesting`
+  assembly). **Before generating the submission iOS build, remove
+  `com.anklebreaker.unity-mcp`** (and let the lock re-resolve), then build.
+- `unity_*` MCP tools stop working the moment it is removed. All
+  `Misprint/Build/*` + `Misprint/Validate All Levels` tooling is in
+  `MisprintDepartment.Editor` and works with or without MCP.
 
 ### MCP-0019
 - Date: 2026-09-03

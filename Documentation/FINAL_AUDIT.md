@@ -27,7 +27,7 @@ Automated Tests ....................... PASS   (48 EditMode tests)
 Manual Level QA ....................... PASS   (all 13 levels + flows — see LEVEL_QA.md)
 UI QA ................................. PASS   (see UI_QA.md)
 Console ............................... PASS   (0 errors; 0 warnings from game code)
-Build/Export .......................... PASS (Windows + Android .apk)  /  iOS: EXTERNAL BLOCKER (needs macOS + Xcode)
+Build/Export .......................... PASS (Windows + Android .apk; iOS Xcode PROJECT generates + inspects clean)  /  iOS binary: EXTERNAL BLOCKER (compile + Validate need macOS + Xcode)
 Documentation ......................... PASS
 Known Release-Blocking Bugs ........... NONE
 ```
@@ -40,9 +40,16 @@ Known Release-Blocking Bugs ........... NONE
   5.6 / privacy verification are in **APP_REVIEW_COMPLIANCE.md** (2026-09-08).
 - **Privacy policy is LIVE:** `https://sites.google.com/view/misprint-department/home`
   — content verified to match the binary (collects nothing, no network).
-  Still owed in App Store Connect: the URL entry, the Support URL,
-  `ITSAppUsesNonExemptEncryption = NO` at archive time, and a Mac-side check
-  that the generated Xcode project carries a `PrivacyInfo.xcprivacy`.
+- **iOS Xcode project generated + verified 2026-09-08** (`Build/iOS`,
+  gitignored). App Info.plist: correct bundle id / version, LandscapeRight
+  only, no `NS*UsageDescription`, no ATS, no URL schemes, no entitlements.
+  `IosPostProcess` auto-sets `ITSAppUsesNonExemptEncryption=false` and adds an
+  app-level `PrivacyInfo.xcprivacy`. See `APP_REVIEW_COMPLIANCE.md`.
+- **Credits panel + buttons removed 2026-09-08** (user request); MainWorkshop
+  regenerated, hierarchy Credits-free, 48/48 + 13/13 still green.
+- Still owed in App Store Connect: privacy-policy URL entry, Support URL,
+  screenshots, price. Submission iOS build must be generated with the MCP
+  bridge removed (see SUMMARY_BANK "NOTE FOR NEXT AGENT").
 - Package trim done this session (see PACKAGE_AUDIT.md); `com.anklebreaker.unity-mcp`
   removed as the final step.
 - BUG-024 (PlayMode test runner enumerates the flow suite opaquely via MCP;

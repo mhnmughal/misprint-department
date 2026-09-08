@@ -8,7 +8,7 @@ rendered screenshots + programmatic RectTransform bounds checks against
 | Screen | Rendered & navigated | No dead buttons | No placeholder | Status |
 |--------|:--:|:--:|:--:|--------|
 | Splash (Bootstrap) | ✔ | n/a | ✔ | PASS |
-| Main Workshop (MainInteractionLayer) | ✔ | ✔ Start/JobFiles/Manual/Settings/Credits all act | ✔ | PASS |
+| Main Workshop (MainInteractionLayer) | ✔ | ✔ Start/JobFiles/Manual/Settings all act | ✔ | PASS |
 | Job Files (Batch 01 rack) | ✔ | ✔ tickets load job, lock/rating shown, Back works | ✔ | PASS |
 | Gameplay HUD | ✔ | ✔ pause works | ✔ | PASS |
 | Defect Rule Card | ✔ shows `DefectRule.Describe()` | n/a | ✔ | PASS |
@@ -19,8 +19,8 @@ rendered screenshots + programmatic RectTransform bounds checks against
 | Proof Approved | ✔ stats + rating seal | ✔ Next/Replay/JobFiles | ✔ | PASS |
 | Reprint Required | ✔ accurate reason | ✔ Correct Again/Restart | ✔ | PASS |
 | Pause | ✔ (built, wired) | ✔ Resume/Restart/Instructions/Workshop | ✔ | PASS |
-| Settings | ✔ | ✔ sliders drive mixer, toggle, Reset (confirm), Credits, Back | ✔ | PASS |
-| Manual / Credits | ✔ authored copy | ✔ Back | ✔ | PASS |
+| Settings | ✔ | ✔ sliders drive mixer, toggle, Reset (confirm), Back | ✔ | PASS |
+| Manual | ✔ authored copy | ✔ Back | ✔ | PASS |
 | Confirm Dialog | ✔ | ✔ confirm/cancel | ✔ | PASS |
 | Tutorial (Job 1) | ✔ 4 action-gated steps, persists | n/a | ✔ | PASS |
 | Toast | ✔ | n/a | ✔ | PASS |

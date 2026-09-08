@@ -64,7 +64,6 @@ namespace MisprintDepartment.Editor.Build
             var jobFilesBtn = SideButton("JobFilesButton", mainGo.transform, "JOB FILES", 0);
             var manualBtn = SideButton("ManualButton", mainGo.transform, "MACHINE MANUAL", 1);
             var settingsBtn = SideButton("SettingsButton", mainGo.transform, "SETTINGS", 2);
-            var creditsBtn = SideButton("CreditsButton", mainGo.transform, "CREDITS", 3, small: true);
 
             W.Wire(workshop, "startButton", startBtn);
             W.Wire(workshop, "startLabel", startLabel);
@@ -72,7 +71,6 @@ namespace MisprintDepartment.Editor.Build
             W.Wire(workshop, "jobFilesButton", jobFilesBtn);
             W.Wire(workshop, "manualButton", manualBtn);
             W.Wire(workshop, "settingsButton", settingsBtn);
-            W.Wire(workshop, "creditsButton", creditsBtn);
 
             // ---- Job Files layer ----
             var jobGo = PanelKit.Plain("JobFilesLayer", safe, UiKit.PanelBg);
@@ -109,20 +107,6 @@ namespace MisprintDepartment.Editor.Build
                 new Vector2(0.5f, 0.05f), new Vector2(0.5f, 0.05f), new Vector2(0.5f, 0), Vector2.zero,
                 new Vector2(300, 64), UiKit.CharcoalUp, UiKit.Paper, 22, out _);
 
-            // ---- Credits layer ----
-            var creditsGo = PanelKit.Plain("CreditsLayer", safe, UiKit.PanelBg);
-            var creditsPanel = creditsGo.AddComponent<UIPanel>();
-            PanelKit.Heading("Title", creditsGo.transform, "CREDITS",
-                new Vector2(0.1f, 0.82f), new Vector2(0.9f, 0.92f), 40, UiKit.Paper);
-            var creditsBody = UiKit.Text("Body", creditsGo.transform, CreditsText(), 26,
-                TextAlignmentOptions.Center, UiKit.Paper);
-            var cbRt = (RectTransform)creditsBody.transform;
-            cbRt.anchorMin = new Vector2(0.15f, 0.25f); cbRt.anchorMax = new Vector2(0.85f, 0.78f);
-            cbRt.offsetMin = Vector2.zero; cbRt.offsetMax = Vector2.zero;
-            var creditsBack = PanelKit.TextButton("BackButton", creditsGo.transform, "BACK",
-                new Vector2(0.5f, 0.06f), new Vector2(0.5f, 0.06f), new Vector2(0.5f, 0), Vector2.zero,
-                new Vector2(240, 60), UiKit.CharcoalUp, UiKit.Paper, 22, out _);
-
             // ---- Dialog layer ----
             var dialog = BuildDialog(safe);
             W.Wire(settings, "dialog", dialog);
@@ -133,25 +117,21 @@ namespace MisprintDepartment.Editor.Build
             W.Wire(nav, "jobSelect", jobSelect);
             W.Wire(nav, "settings", settings);
             W.Wire(nav, "manual", manualPanel);
-            W.Wire(nav, "credits", creditsPanel);
             W.Wire(nav, "manualBackButton", manualBack);
-            W.Wire(nav, "creditsBackButton", creditsBack);
 
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene, Path);
             Debug.Log("[Misprint] MainWorkshop scene built.");
         }
 
-        static Button SideButton(string name, Transform parent, string label, int index, bool small = false)
+        static Button SideButton(string name, Transform parent, string label, int index)
         {
-            var btn = UiKit.Button(name, parent, label, small ? new Color(0,0,0,0) : UiKit.CharcoalUp,
-                UiKit.Paper, small ? 20 : 26, out var lbl);
+            var btn = UiKit.Button(name, parent, label, UiKit.CharcoalUp, UiKit.Paper, 26, out _);
             var rt = (RectTransform)btn.transform;
             rt.anchorMin = new Vector2(1, 0.62f); rt.anchorMax = new Vector2(1, 0.62f);
             rt.pivot = new Vector2(1, 1);
-            rt.sizeDelta = new Vector2(460, small ? 56 : 96);
+            rt.sizeDelta = new Vector2(460, 96);
             rt.anchoredPosition = new Vector2(-60, -index * 116);
-            if (small) lbl.color = UiKit.LampWarm;
             return btn;
         }
 
@@ -181,11 +161,6 @@ namespace MisprintDepartment.Editor.Build
             var resetBtn = UiKit.Button("ResetButton", resetRow, "RESET ALL PROGRESS", UiKit.WarnRed, UiKit.Paper, 22, out _);
             UiKit.Stretch((RectTransform)resetBtn.transform);
 
-            var creditsRow = UiKit.Rect("CreditsRow", col);
-            UiKit.Size(creditsRow, 640, 56);
-            var creditsBtn = UiKit.Button("CreditsButton", creditsRow, "CREDITS", UiKit.CharcoalUp, UiKit.Paper, 20, out _);
-            UiKit.Stretch((RectTransform)creditsBtn.transform);
-
             var back = PanelKit.TextButton("BackButton", go.transform, "BACK TO BENCH",
                 new Vector2(0.5f, 0.05f), new Vector2(0.5f, 0.05f), new Vector2(0.5f, 0), Vector2.zero,
                 new Vector2(300, 64), UiKit.CharcoalUp, UiKit.Paper, 22, out _);
@@ -195,7 +170,6 @@ namespace MisprintDepartment.Editor.Build
             W.Wire(settings, "uiSlider", ui);
             W.Wire(settings, "hapticsToggle", haptics);
             W.Wire(settings, "resetButton", resetBtn);
-            W.Wire(settings, "creditsButton", creditsBtn);
             W.Wire(settings, "backButton", back);
             return (go, settings);
         }
@@ -259,12 +233,5 @@ namespace MisprintDepartment.Editor.Build
             "  REPLACE — set a command to the one it should be\n\n" +
             "You have a limited correction budget. Pull RUN PROOF to send the\n" +
             "corrected route. If it reaches the destination, the proof is approved.";
-
-        static string CreditsText() =>
-            "MISPRINT DEPARTMENT\n\n" +
-            "Design, code, art direction, audio\nby the Misprint Department team\n\n" +
-            "All sound is original and generated in-project.\n" +
-            "Type: Liberation Sans (SIL Open Font License).\n\n" +
-            "Made offline. No ads, no tracking, no accounts.";
     }
 }
