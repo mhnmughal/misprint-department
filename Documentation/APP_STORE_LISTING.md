@@ -155,7 +155,9 @@ Answer the age questionnaire honestly; for this app every content question is
 | Account | No account, no sign-in, no Sign in with Apple requirement. |
 | Privacy policy URL | `https://sites.google.com/view/misprint-department/home` (live). Hosts the text below. |
 
-### Privacy policy — host this text at a public URL
+### Privacy policy — LIVE at `https://sites.google.com/view/misprint-department/home`
+
+Hosted text (verified accurate against the build):
 
 ```
 Privacy Policy for Misprint Department
@@ -164,17 +166,21 @@ Misprint Department does not collect, transmit, or share any personal
 data. The app makes no network connections. It contains no advertising,
 no analytics, and no third-party software development kits.
 
-Your game progress and settings are saved in a single file on your own
-device. That file is never uploaded anywhere and is not accessible to us
-or to any other party. Deleting the app removes it.
+Your game progress and settings are saved on your own device. That data
+is never uploaded anywhere and is not accessible to us or to any other
+party. Deleting the app removes it.
 
 The app requests no special permissions and does not use the device
 camera, microphone, contacts, location, photos, or Bluetooth.
 
-Questions: [your support email]
+Questions: aclyvanblar@icloud.com
 
-Last updated: [date]
+Last updated: September 8, 2026
 ```
+
+Optional tightening (not required — the live version already passes review):
+name the responsible entity ("provided by Misprint Department team") and add
+a "we may update this policy; changes are posted here" line.
 
 ---
 
@@ -182,13 +188,52 @@ Last updated: [date]
 
 | Field | Value |
 |-------|-------|
-| Support URL | Required. A simple page with a contact email is enough (GitHub Pages or Notion both qualify). |
+| Support URL | `https://sites.google.com/view/misprint-department/support` — add a second page to the same Google Site that hosts the privacy policy (Google Sites: Pages panel → **+** → name it "Support"). Paste the text below. Must be a real reachable page, not a `mailto:`. |
 | Marketing URL | Optional. Leave blank for v1 rather than pointing at a placeholder. |
 | Copyright | `2026 Misprint Department team` |
 | Primary language | English (U.S.) |
 | Bundle ID | `com.misprintdepartmentteam.misprintdepartment` |
 | Version / build | `1.0` / `1` |
 | Content rights | No third-party content that needs additional rights. Code, art, and audio are original. The typeface is Liberation Sans under the SIL Open Font License, which permits commercial use. |
+
+### Support page — paste into the new Google Sites "Support" page
+
+```
+Misprint Department — Support
+
+Misprint Department is a single-player, fully offline puzzle game. There
+are no accounts and no online features.
+
+Contact
+Email: aclyvanblar@icloud.com
+We usually reply within a few days.
+
+Common questions
+
+Progress didn't save.
+Progress is written after each proof is approved. If you close the app
+mid-job, that job restarts.
+
+I lost my progress after reinstalling.
+The save file lives only on your device and is removed when the app is
+deleted. There is no cloud backup.
+
+How do I turn the music or sound off?
+Open Settings from the main workshop screen. Music, Sound Effects,
+Interface and Haptics each have their own control.
+
+How do I start over?
+Settings > Reset All Progress. This asks for confirmation and cannot be
+undone.
+
+Report a bug
+Email the address above with your device model and iOS version.
+
+Privacy
+See https://sites.google.com/view/misprint-department/home
+
+Last updated: September 8, 2026
+```
 
 ### App Review notes — paste into "Notes"
 
@@ -273,12 +318,16 @@ screen does. Keep it to a few words per shot.
 
 ## Still to supply before submitting
 
-- A **Support URL** (page with a contact email).
+- Publish the **Support page** (text in section 08) as a second page on the
+  Google Site and enter its URL:
+  `https://sites.google.com/view/misprint-department/support`.
 - The **price** (the app ships with no in-app purchase either way).
+- The iOS binary, built + signed + validated on a Mac (APP_REVIEW_COMPLIANCE.md).
 
-Done: privacy policy hosted at
-`https://sites.google.com/view/misprint-department/home`; reviewer demo video
-via the recording menu above.
+Done: privacy policy live
+(`https://sites.google.com/view/misprint-department/home`); screenshots for
+iPhone 6.9" + iPad 13" (`Screenshots/<device>/`); reviewer demo video
+(`Recordings/`); metadata and guideline check above.
 
 *Confirm the final character counts in App Store Connect, which shows a live
 counter as you type.*
