@@ -1,73 +1,81 @@
 # PACKAGE_AUDIT — Misprint Department
 
-Reviewed + **trimmed** 2026-09-03 (Unity 6000.3.19f1).
+Last reviewed 2026-09-08 (Unity 6000.3.19f1). Committed manifest = 32 direct
+dependencies.
 
-## Trim performed (2026-09-03)
-Removed from `Packages/manifest.json`, project re-resolved, **0 compile
-errors / 0 warnings, 48/48 tests pass, Windows build succeeds** (25 s / 102 MB,
-down from 70 s / 105 MB), rendering unchanged:
-- `com.unity.timeline`, `com.unity.visualscripting`,
-  `com.unity.multiplayer.center`, `com.unity.collab-proxy`,
-  `com.unity.ide.rider`
-- 2D tooling: `com.unity.2d.animation`, `2d.aseprite`, `2d.psdimporter`,
-  `2d.spriteshape`, `2d.tilemap.extras`, `2d.tooling`
-- unused engine modules: `unityanalytics`, `vectorgraphics`, `cloth`,
-  `terrain`+`terrainphysics` (terrain re-added as a transitive dep — harmless),
-  `vehicles`, `wind`, `vr`, `xr`
+## Current state
 
-Kept `com.unity.2d.sprite` + `com.unity.2d.tilemap` (small; the active
-`Renderer2D` renderer path). `manifest.json.pre-trim.bak` holds the previous
-state.
+**Direct dependencies that are real downloads (7):**
 
-**`com.anklebreaker.unity-mcp` was removed as the final step** — the editor
-recompiled once cleanly (Editor.log: 1 domain reload, no `error CS`), 99 package
-files deleted, all `MisprintDepartment.*` assemblies intact, and the bridge
-port (7890) closed as expected. Nothing in the game references it. Backup:
-`manifest.json.pre-mcp-removal.bak`. To use the MCP tooling again, re-add the
-line `"com.anklebreaker.unity-mcp": "https://github.com/AnkleBreaker-Studio/unity-mcp-plugin.git"`.
+| Package | Why it stays |
+|---------|--------------|
+| `com.unity.render-pipelines.universal` 17.3.0 | the render pipeline |
+| `com.unity.ugui` 2.0.0 | uGUI + TextMeshPro — every screen + all fonts |
+| `com.unity.inputsystem` 1.19.0 | `InputSystemUIInputModule` (project is New-Input only) |
+| `com.unity.test-framework` 1.6.0 | the 48 EditMode tests — editor-only, stripped from the player |
+| `com.unity.ide.visualstudio` 2.0.26 | IDE project generation — editor-only |
+| `com.unity.2d.sprite`, `com.unity.2d.tilemap` 1.0.0 | small; kept for the active Renderer2D path |
 
-## Original review (pre-trim) against `Packages/manifest.json`
+The other 25 direct entries are `com.unity.modules.*` **engine modules** —
+they ship inside the Unity install, not as downloads, and Unity's build-time
+code stripping (`stripEngineCode: 1` is set) drops any unreferenced engine
+code from the actual player binary.
 
-## Required for the shipping game
-| Package | Why |
-|---------|-----|
-| com.unity.render-pipelines.universal 17.3.0 | render pipeline (URP) |
-| com.unity.ugui 2.0.0 | uGUI + TextMeshPro (all UI + fonts) |
-| com.unity.inputsystem 1.19.0 | `InputSystemUIInputModule` (project is New-Input-only) |
-| com.unity.modules.* (audio, ui, uielements, imgui, jsonserialize, imageconversion, screencapture, particlesystem, physics, animation, director) | engine modules pulled by URP / uGUI / TMP; the game code itself uses only audio + ui + jsonserialize + imageconversion (icon PNG encode) |
+**Game code (`Assets/Scripts/`) uses only:** `audio`, `ui` / `uielements` /
+`imgui`, `jsonserialize` (save file), `imageconversion` (editor icon PNG
+encode). `physics` is load-bearing — `com.unity.render-pipelines.core`
+depends on it. Everything else is either a transitive requirement or inert.
 
-## Dev-only (not shipped / disabled in player builds)
-| Package | Note |
-|---------|------|
-| com.anklebreaker.unity-mcp | editor tooling — **remove before a store submission** |
-| com.unity.test-framework 1.6.0 | EditMode/PlayMode tests; editor-only, stripped from player |
-| com.unity.ide.rider / ide.visualstudio | IDE integration, editor-only |
-| com.unity.collab-proxy | VCS UI, editor-only |
+## Trims already done
 
-## Removal attempt (2026-09-03) — REVERTED
-A headless trim of `timeline`, `visualscripting` and `multiplayer.center` was
-attempted via `manifest.json` + `Client.Resolve()`. The project recompiled
-with **0 errors** and all game assemblies loaded, but the editor's
-`isCompiling` state did not settle cleanly over ~10 min through the MCP
-connection, so the manifest was **reverted to the full set** to keep a
-known-good build state. Do this trim in the Editor's Package Manager UI
-(where progress is visible) as a deliberate pre-submission step, one package
-at a time, compiling + building between each.
+- **2026-09-03 (MCP-0021):** removed `com.unity.timeline`,
+  `com.unity.visualscripting`, `com.unity.multiplayer.center`,
+  `com.unity.collab-proxy`, `com.unity.ide.rider`, the 2D tooling set
+  (`2d.animation` / `2d.aseprite` / `2d.psdimporter` / `2d.spriteshape` /
+  `2d.tilemap.extras` / `2d.tooling`), and engine modules `unityanalytics`,
+  `vectorgraphics`, `cloth`, `terrain` + `terrainphysics`, `vehicles`,
+  `wind`, `vr`, `xr`. Verified: 0 errors, 48/48 tests, Windows + Android
+  builds. (`terrain` returns as a transitive of URP core — harmless.)
+- **2026-09-08 (MCP-0021 / 0023):** removed `com.anklebreaker.unity-mcp`
+  (editor bridge) and, after the reviewer video, `com.unity.recorder` +
+  `com.unity.timeline`.
 
-## Unused — safe to remove (left in place; trim before submission)
-com.unity.2d.animation, 2d.aseprite, 2d.psdimporter, 2d.sprite, 2d.spriteshape,
-2d.tilemap, 2d.tilemap.extras, 2d.tooling, com.unity.timeline,
-com.unity.visualscripting, com.unity.multiplayer.center,
-com.unity.modules.{ai, cloth, terrain, terrainphysics, tilemap, vehicles,
-video, vr, xr, wind, umbra, assetbundle, unityanalytics}, vectorgraphics,
-adaptiveperformance.
+## Still prunable — but do it in the Package Manager UI, not a bulk edit
 
-None of these are referenced by game code (`Assets/Scripts/`). The four
-`unitywebrequest*` modules and `unityanalytics` are engine stubs kept for
-package-manager compatibility; **no game code calls them** (see
-OFFLINE_AUDIT.md). Removing the 2D/timeline/visualscripting set is a clean
-follow-up before submission.
+These `com.unity.modules.*` are not referenced by game code or by any scene /
+prefab, and nothing else in the lock depends on them:
+
+`ai` (NavMesh), `androidjni`, `assetbundle`, `particlesystem`,
+`screencapture`, `video`, and the networking set `unitywebrequest` +
+`unitywebrequestwww` + `unitywebrequestassetbundle` + `unitywebrequestaudio` +
+`unitywebrequesttexture`.
+
+They cost effectively nothing in the shipped binary (engine stripping removes
+them), so this is cosmetic. **A past bulk manifest trim left the editor's
+`isCompiling` state stuck for ~10 minutes** (see the 2026-09-03 note in git
+history) — so if you want these gone, remove them **one at a time in
+Window > Package Manager > In Project**, letting the editor settle and doing a
+test build between each. Keep `manifest.json` backed up.
+
+## Analytics / telemetry — OFF
+
+- No `com.unity.services.*`, `com.unity.analytics`, `com.unity.ads`, or
+  `com.unity.purchasing` packages. `com.unity.modules.unityanalytics` was
+  removed in MCP-0021.
+- No analytics / tracking / crash-reporting API calls in `Assets/Scripts/`.
+- `ProjectSettings/UnityConnectSettings.asset` (2026-09-08): every flag is
+  `0` — top-level `m_Enabled`, `InsightsSettings` (incl.
+  `m_EngineDiagnosticsEnabled` and `m_CaptureEditorExceptions`),
+  `UnityAnalyticsSettings` (incl. `m_InitializeOnStartup`), `UnityAdsSettings`
+  (incl. `m_InitializeOnStartup`), `CrashReportingSettings`,
+  `PerformanceReportingSettings`, `UnityPurchasingSettings`.
+
+`com.unity.test-framework.performance` (a URP transitive) writes a
+`PerformanceTestRunInfo.json` build-metadata TextAsset into every build — it
+is not analytics, sends nothing, and Apple does not flag it. See
+`APP_REVIEW_COMPLIANCE.md` §1.
 
 ## No third-party runtime SDKs
+
 No Firebase / AdMob / Facebook / GameAnalytics / AppsFlyer / Unity Ads /
-attribution / remote-config / analytics packages are present. **PASS.**
+attribution / remote-config packages. **PASS.**

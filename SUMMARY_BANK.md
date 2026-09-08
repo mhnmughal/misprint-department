@@ -245,6 +245,29 @@ Validate all levels: menu `Misprint/Validate All Levels` (7 → Training + Ch1).
 
 ## MCP CHANGE LOG
 
+### MCP-0027
+- Date: 2026-09-08
+- Agent: Claude (Sonnet 5), session "reviewer video + privacy policy"
+- Scene/Asset: `ProjectSettings/UnityConnectSettings.asset`,
+  `Documentation/PACKAGE_AUDIT.md`.
+- Change: (a) Analytics/telemetry — zeroed the last non-zero flags in
+  `UnityConnectSettings.asset`: `CrashReportingSettings.m_CaptureEditorExceptions`
+  1→0, `UnityAnalyticsSettings.m_InitializeOnStartup` 1→0,
+  `UnityAdsSettings.m_InitializeOnStartup` 1→0. Everything else was already 0
+  (see MCP-0024). No analytics packages, no analytics API calls. (b) Refreshed
+  `PACKAGE_AUDIT.md` to the current 32-dep reality: 7 real packages + 25
+  engine modules, of which game code uses ~5. Listed the still-prunable
+  unused modules (ai, androidjni, assetbundle, particlesystem, screencapture,
+  video, unitywebrequest×5) with the standing instruction to remove them ONE
+  AT A TIME in the Package Manager UI (a past bulk trim stuck `isCompiling`
+  for 10 min) — cosmetic only, engine stripping already drops them from the
+  binary.
+- Reason: user asked to confirm the package set is minimal and to disable
+  Unity analytics.
+- Validation: file-level only (MCP removed in MCP-0026). `UnityConnectSettings`
+  re-imports cleanly; no analytics code or packages anywhere.
+- Result: PASS
+
 ### MCP-0026
 - Date: 2026-09-08
 - Agent: Claude (Sonnet 5), session "reviewer video + privacy policy"
