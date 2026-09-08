@@ -105,7 +105,7 @@ lamp). Palette: warm off-white paper, charcoal machine body, muted metal,
 dark ink, restrained warning red, subdued teal/blue selected states, warm
 lamp highlights. Polished mobile-friendly lighting. Tactile animations.
 **Original / license-safe audio only** — prefer project-generated WAVs.
-Document every clip in `Assets/Documentation/AUDIO_PROVENANCE.md`. Audio
+Document every clip in `Documentation/AUDIO_PROVENANCE.md`. Audio
 mixer groups: Master, Music, SFX, UI. Restrained haptics.
 
 ### Persistence
@@ -134,8 +134,8 @@ No sensitive permissions (camera, mic, contacts, location, photos, BT, ATT).
 
 Automated tests: all 6 base commands, all 6 corrections, defect
 transformation, route simulation, win/fail conditions. Save tests. Level
-validator. 42-level manual QA -> `Assets/Documentation/LEVEL_QA.md`. UI QA ->
-`Assets/Documentation/UI_QA.md`. Performance profiling. Clean console.
+validator. 42-level manual QA -> `Documentation/LEVEL_QA.md`. UI QA ->
+`Documentation/UI_QA.md`. Performance profiling. Clean console.
 Production build/export succeeds.
 
 ### Original rules (AI_RULES.md summary)
@@ -150,7 +150,7 @@ document audio provenance; do not stop early.
 ### Completion
 
 The project is COMPLETE only when the full checklist in section 76 of the
-original brief passes and `Assets/Documentation/FINAL_AUDIT.md` reports PASS
+original brief passes and `Documentation/FINAL_AUDIT.md` reports PASS
 in every category with no release-blocking bugs. Until then
 `SUMMARY_BANK.md` PROJECT STATUS stays `IN_PROGRESS`. A playable first
 level, a prototype, or 41 levels is NOT complete.

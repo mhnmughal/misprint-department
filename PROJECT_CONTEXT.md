@@ -59,7 +59,7 @@ faded/obscured instruction where allowed).
 VERIFIED (level complete) · CLEAN PROOF (met correction par) · MASTER PROOF
 (optimal solution). Shown as print-inspection marks / seals. No three-star.
 
-## Architecture (see Assets/Documentation/ARCHITECTURE.md for detail)
+## Architecture (see Documentation/ARCHITECTURE.md for detail)
 - **Scenes:** `Bootstrap` (init, load save, route to menu), `MainWorkshop`
   (menu = QC desk: Start Inspection, Job Files, Manual, Settings),
   `Gameplay` (one scene, data-driven by `LevelDefinition`).

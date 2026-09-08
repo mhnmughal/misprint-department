@@ -6,7 +6,7 @@ Read this file first, every session.
 ## RULE 1 — READ PROJECT MEMORY FIRST
 At the start of every session read, in order:
 1. `AI_RULES.md`  2. `PROJECT_CONTEXT.md`  3. `SUMMARY_BANK.md`
-4. `CLAUDE_MASTER_PROMPT.md`  5. relevant `Assets/Documentation/*`
+4. `CLAUDE_MASTER_PROMPT.md`  5. relevant `Documentation/*`
 No project modifications before you understand current state.
 
 > **2026-09-03: the `com.anklebreaker.unity-mcp` package was removed** from the
@@ -92,7 +92,7 @@ performance, readable text, comfortable touch targets.
 
 ## RULE 19 — SOUND ASSET PROVENANCE
 Never ship audio without documented legal origin. Prefer project-generated
-original audio. Log every clip in `Assets/Documentation/AUDIO_PROVENANCE.md`.
+original audio. Log every clip in `Documentation/AUDIO_PROVENANCE.md`.
 
 ## RULE 20 — DO NOT STOP EARLY
 Not complete until the completion checklist is fully satisfied and

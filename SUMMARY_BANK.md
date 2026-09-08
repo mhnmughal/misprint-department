@@ -9,7 +9,7 @@ Living development memory. Update after every meaningful milestone
 full UI flows, 48 EditMode tests + 13/13 level validation pass, console is
 clean, and **Windows + Android (IL2CPP/ARM64) player builds succeed**.
 Remaining: iOS binary (needs macOS + Xcode — external blocker) and the
-pre-submission package trim. See `Assets/Documentation/FINAL_AUDIT.md`.
+pre-submission package trim. See `Documentation/FINAL_AUDIT.md`.
 
 ## CURRENT MILESTONE
 M3 — 12-level campaign + all tools + Color Pass + builds. **COMPLETE** (2026-09-03).
@@ -30,7 +30,7 @@ M3 — 12-level campaign + all tools + Color Pass + builds. **COMPLETE** (2026-0
   detail, stamp block, bench registration marks.
 - `Application.targetFrameRate = 60`, vSync off.
 - 48 EditMode tests pass. Windows + Android `.apk` builds succeed (0 errors,
-  0 warnings from our code). All Assets/Documentation/* updated + FINAL_AUDIT.
+  0 warnings from our code). All Documentation/* updated + FINAL_AUDIT.
 
 ## PREVIOUS MILESTONE
 M2.1 — polish + icon + tutorial level. **COMPLETE** (2026-09-03).
@@ -128,7 +128,7 @@ re-run `Misprint/Build/0 · REBUILD EVERYTHING` to regenerate from code.
 Authored (scene + prefab), no runtime construction. Canvas per scene
 (Overlay, CanvasScaler ref 1920x1080 match 0.5), SafeArea child +
 `SafeAreaFitter`, EventSystem + InputSystemUIInputModule. Screens listed in
-`Assets/Documentation/UI_UX_SYSTEM.md`. Navigation: `WorkshopNav`
+`Documentation/UI_UX_SYSTEM.md`. Navigation: `WorkshopNav`
 (menu panels) + `GameplayFlow` (gameplay bindings + job flow). Palette +
 spacing tokens in `UiKit`. Font LiberationSans SDF (SIL OFL).
 
@@ -137,7 +137,7 @@ spacing tokens in `UiKit`. Font LiberationSans SDF (SIL OFL).
 MasterVolume / MusicVolume / SFXVolume / UIVolume. `AudioController` maps
 0–1 sliders to dB and plays pooled one-shots via `SoundBank`. 14 procedurally
 generated WAVs. Settings sliders verified driving mixer params in Play Mode.
-Provenance: `Assets/Documentation/AUDIO_PROVENANCE.md` (all Project-generated
+Provenance: `Documentation/AUDIO_PROVENANCE.md` (all Project-generated
 original, no external dependency).
 
 ## LEVEL PROGRESS
@@ -331,6 +331,13 @@ Private GitHub repo: **github.com/mhnmughal/misprint-department** (branch
 `main`). Unity `.gitignore` + `.gitattributes` + `README.md` at the root.
 Commit or push only when asked.
 
+## DOCUMENTATION LOCATION
+2026-09-08: the docs folder was moved out of `Assets/` to the repo root:
+**`Documentation/`** (was `Assets/Documentation/`). The Unity `.md.meta`
+files were dropped since they are meaningless outside `Assets/`. All path
+references in the root docs were updated. Unity no longer imports these as
+TextAssets; nothing in code loaded them at runtime.
+
 ## APP STORE METADATA
 A ready-to-paste App Store Connect kit (name / subtitle / keyword options
 with character counts, a fresh US-English description with no em dashes,
@@ -465,10 +472,10 @@ lives in `MisprintDepartment.Editor` and is unaffected.
 ### MCP-0002
 - Date: 2026-09-03
 - Agent: Claude (Sonnet 5), session "foundation"
-- Scene/Asset: repo root + Assets/Documentation/
+- Scene/Asset: repo root + Documentation/
 - Change: Created project-memory documents (`CLAUDE_MASTER_PROMPT.md`,
   `AI_RULES.md`, `PROJECT_CONTEXT.md`, `SUMMARY_BANK.md`) and
-  Assets/Documentation/ (ARCHITECTURE, GAME_DESIGN, LEVEL_DESIGN filled;
+  Documentation/ (ARCHITECTURE, GAME_DESIGN, LEVEL_DESIGN filled;
   LEVEL_QA, UI_UX_SYSTEM, UI_QA, AUDIO_PROVENANCE, OFFLINE_AUDIT,
   PACKAGE_AUDIT, MOBILE_RELEASE_CHECKLIST, FINAL_AUDIT stubbed).
 - Reason: Master prompt sections 2-8, 66; project must carry its own memory.
@@ -510,7 +517,7 @@ lives in `MisprintDepartment.Editor` and is unaffected.
 ### MCP-0011
 - Date: 2026-09-03
 - Agent: Claude (Sonnet 5), session "S2 vertical slice"
-- Scene/Asset: Assets/Documentation/
+- Scene/Asset: Documentation/
 - Change: Filled OFFLINE_AUDIT (PASS — no runtime network / SDK / analytics),
   AUDIO_PROVENANCE (14 clips, all project-generated original + font licence),
   UI_UX_SYSTEM (canvas arch, screen list, palette, spacing), UI_QA (per-screen
