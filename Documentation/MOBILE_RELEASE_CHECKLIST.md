@@ -40,9 +40,13 @@ Every screen canvas has a `SafeArea` child driven by `Screen.safeArea`
 
 ## Remaining before store submission
 - ~~Remove `com.anklebreaker.unity-mcp` + unused packages~~ — **done**
-  2026-09-03 (PACKAGE_AUDIT.md). manifest is now 32 deps; `manifest.json`
-  backups `.pre-trim.bak` / `.pre-mcp-removal.bak` can be deleted once happy.
-- Produce the iOS Xcode project on a Mac; supply signing.
-- Store listing copy + screenshots from the finished build.
+  (PACKAGE_AUDIT.md). manifest is 32 deps; the `manifest.json.*.bak` working
+  backups were deleted 2026-09-08 (git history is the record now).
+- ~~Store listing copy + screenshots~~ — **done**. Metadata in
+  APP_STORE_LISTING.md; screenshots captured for iPhone 6.9" and iPad 13"
+  (`Screenshots/<device>/`, gitignored). Privacy policy live. See
+  APP_REVIEW_COMPLIANCE.md.
+- Produce the iOS Xcode project on a Mac; supply signing. (The project
+  generates on Windows and inspects clean — APP_REVIEW_COMPLIANCE.md §1.)
 - On-device pass (touch targets, haptics, audio routing) — the editor pass
   and both desktop/Android player builds are clean.
