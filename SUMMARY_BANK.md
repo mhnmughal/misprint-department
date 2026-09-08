@@ -245,6 +245,29 @@ Validate all levels: menu `Misprint/Validate All Levels` (7 → Training + Ch1).
 
 ## MCP CHANGE LOG
 
+### MCP-0030
+- Date: 2026-09-08
+- Agent: Claude (Sonnet 5), session "reviewer video + privacy policy"
+- Scene/Asset: `Assets/Scripts/Editor/Build/WorkshopSceneBuilder.cs`,
+  `Assets/Scenes/MainWorkshop.unity`, `Documentation/APP_STORE_LISTING.md`.
+  (Transient again: Store tool + `com.unity.recorder` + MCP re-added, used,
+  removed.)
+- Change: **iPad IS ready — MCP-0029's "iPad broken" call was wrong** (misread
+  low-res thumbnails). Live measurement at 2732x2048: nav buttons sit ~99 px
+  inside the right edge, the defect card ~28 px — nothing clips. The one real
+  bug was `CurrentJobLabel` wrapping/truncating ("NEXT: JOB 012" instead of
+  "... — FINAL PROOF"); fixed by `enableWordWrapping = false` +
+  `overflowMode = Ellipsis` + wider anchor (0.6→0.94). MainWorkshop rebuilt.
+  Captured **both device sets** into per-device folders:
+  `Screenshots/iphone-6.9/` (6 × 2868x1320) and `Screenshots/ipad-13/`
+  (6 × 2732x2048), RGB PNG, all upload-ready. Screenshot tool now has two
+  menu items (iPhone / iPad) and writes to `Screenshots/<device>/`.
+- Reason: user asked for iPad screenshots + per-device folders.
+- Validation: 12 PNGs, dimensions verified per device. Visual review: both
+  aspects clean; remaining nits (crude 3D bench, iPad vertical whitespace,
+  job-ticket stamp/label overlap) documented as polish, not blockers.
+- Result: PASS
+
 ### MCP-0029
 - Date: 2026-09-08
 - Agent: Claude (Sonnet 5), session "reviewer video + privacy policy"

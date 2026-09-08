@@ -220,9 +220,14 @@ Landscape. Actual gameplay only, no device frames with fake status bars, no
 "download" or price text baked in (Guideline 2.3.3). Required set: iPhone
 6.9-inch and, if the app ships on iPad, iPad 13-inch.
 
-**A captured set is in `Screenshots/`** (2868 x 1320, PNG/RGB, iPhone 6.9-inch
-landscape — the size ASC requires and auto-scales down; `Screenshots/` is
-gitignored). Recommended upload order, strongest first:
+**Captured sets are in `Screenshots/`** (gitignored), one folder per device:
+
+| Folder | Size | Slot |
+|--------|------|------|
+| `Screenshots/iphone-6.9/` | 2868 x 1320 | iPhone 6.9-inch (required) |
+| `Screenshots/ipad-13/` | 2732 x 2048 | iPad 13-inch (needed since the build targets iPad) |
+
+Six shots per folder, same names. Recommended upload order, strongest first:
 
 1. `03_inspection.png` — a job mid-inspection: printed route strip, the
    TODAY'S DEFECT card, the correction tray, the RUN PROOF lever.
@@ -237,32 +242,14 @@ gitignored). Recommended upload order, strongest first:
 6. `01_workshop.png` — the proof bench and the CONTINUE INSPECTION control.
 
 To regenerate: re-add `com.unity.recorder`, recreate the
-`Assets/Scripts/Editor/Store/` tool (see MCP-0028 in SUMMARY_BANK), and run
-**Misprint / Store / Capture — iPhone 6.9"**.
+`Assets/Scripts/Editor/Store/` tool (see MCP-0028 / MCP-0030 in SUMMARY_BANK),
+and run **Misprint / Store / Capture — iPhone 6.9"** and **— iPad 13"**.
 
-Polish notes before final upload: `01_workshop` shows the 3D bench as flat
-primitives (low detail); on `02_job_files` the PASS stamp overlaps the small
-batch-label line. Neither blocks submission; both are art/layout passes if the
-listing needs to shine.
-
-### iPad — not ready
-
-The Xcode project targets `TARGETED_DEVICE_FAMILY = 1,2` (iPhone + iPad), so
-ASC would ask for **13-inch iPad** screenshots (2732 x 2048 landscape).
-Captured at that size (2026-09-08), the UI clips: the JOB FILES / MACHINE
-MANUAL / SETTINGS nav buttons, the TODAY'S DEFECT card, and the INTERFACE
-slider all run off the right edge. The canvas is tuned for wide phone aspect
-(1920x1080 reference, `MatchWidthOrHeight = 0.5`) and overflows at iPad 4:3.
-
-**Two options for v1:**
-1. **Ship iPhone-only** — set `PlayerSettings.iOS.targetDevice =
-   iOSTargetDevice.iPhoneOnly` (add to
-   `MisprintBuild.ConfigurePlayerSettings`), rebuild. No iPad screenshots
-   needed. Fastest path.
-2. **Support iPad** — a responsive-layout pass on the scene builders: re-anchor
-   the right-edge elements inside the safe area, cap the defect-card width,
-   pull the workshop side buttons in. Then re-capture with
-   **Misprint / Store / Capture — iPad 13"**.
+Both aspects fit without clipping (verified: iPad nav buttons sit ~99 px inside
+the right edge, the defect card ~28 px). Polish notes, not blockers:
+`01_workshop` shows the 3D bench as flat primitives; on iPad there is a fair
+amount of empty vertical space (the layout is tuned for wide phone aspect);
+on `02_job_files` the PASS stamp overlaps the small batch-label line.
 
 Optional caption text overlaid on the images is fine if it describes what the
 screen does. Keep it to a few words per shot.

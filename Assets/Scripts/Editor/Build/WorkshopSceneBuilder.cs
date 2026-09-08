@@ -57,8 +57,10 @@ namespace MisprintDepartment.Editor.Build
 
             var currentJob = UiKit.Text("CurrentJobLabel", mainGo.transform, "NEXT: JOB 001 — FIRST PROOF",
                 24, TextAlignmentOptions.Left, UiKit.LampWarm, FontStyles.Bold);
+            currentJob.enableWordWrapping = false;         // one line at any aspect
+            currentJob.overflowMode = TMPro.TextOverflowModes.Ellipsis;
             var cjRt = (RectTransform)currentJob.transform;
-            cjRt.anchorMin = new Vector2(0.06f, 0.08f); cjRt.anchorMax = new Vector2(0.6f, 0.14f);
+            cjRt.anchorMin = new Vector2(0.06f, 0.075f); cjRt.anchorMax = new Vector2(0.94f, 0.135f);
             cjRt.offsetMin = Vector2.zero; cjRt.offsetMax = Vector2.zero;
 
             var jobFilesBtn = SideButton("JobFilesButton", mainGo.transform, "JOB FILES", 0);
