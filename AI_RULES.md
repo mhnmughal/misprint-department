@@ -9,9 +9,11 @@ At the start of every session read, in order:
 4. `CLAUDE_MASTER_PROMPT.md`  5. relevant `Documentation/*`
 No project modifications before you understand current state.
 
-> **2026-09-03: the `com.anklebreaker.unity-mcp` package was removed** from the
-> project (pre-submission cleanup). Rules 2–3 below only apply if a future
-> agent re-adds it (see SUMMARY_BANK.md "NOTE FOR NEXT AGENT"). Without it,
+> **The `com.anklebreaker.unity-mcp` package is removed** from the project
+> (pre-submission cleanup — removed 2026-09-03, briefly re-added for the
+> reviewer video on 2026-09-08, removed again same day in MCP-0023). Rules 2–3
+> below only apply if a future agent re-adds it (see SUMMARY_BANK.md "NOTE FOR
+> NEXT AGENT"). Without it,
 > make Unity changes in the Editor directly and still keep SUMMARY_BANK.md
 > current. The build/level tooling under `MisprintDepartment.Editor`
 > (`Misprint/*` menus) works with or without MCP.

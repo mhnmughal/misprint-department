@@ -153,7 +153,7 @@ Answer the age questionnaire honestly; for this app every content question is
 | Data collection | **Data Not Collected.** No network calls, no analytics, no third-party SDKs. The only stored data is a local save file that never leaves the device. |
 | Tracking | No. No App Tracking Transparency prompt, no IDFA use. |
 | Account | No account, no sign-in, no Sign in with Apple requirement. |
-| Privacy policy URL | **Still required** even with no data collected. Host the text below and link it here and in the app's metadata. |
+| Privacy policy URL | `https://sites.google.com/view/misprint-department/home` (live). Hosts the text below. |
 
 ### Privacy policy — host this text at a public URL
 
@@ -204,6 +204,14 @@ card from the main workshop screen.
 
 Demo account: not needed.
 
+A screen-recorded playthrough for the reviewer is included:
+`Recordings/MisprintDepartment_ReviewerDemo_001.mp4` (2868x1320 iPhone 17
+landscape, H.264 with audio, about two minutes) covers the Training Job, one
+level from every batch played to PROOF APPROVED, and the sound settings.
+Attach it in the "App Review Information" notes or use it as the basis for an
+app preview. (`Recordings/` is gitignored; the file lives only on the build
+machine.)
+
 ---
 
 ## 09. Screenshots
@@ -237,7 +245,7 @@ screen does. Keep it to a few words per shot.
 | 2.3.10 other platforms | The description does not name or link any non-Apple platform. |
 | 2.3 accurate metadata | Description, subtitle, and keywords are written from scratch for this app and match what it does. No exaggeration. |
 | 4.2 minimum functionality | A guided training job plus twelve handcrafted levels with six mechanics and a rating system. Not a thin wrapper. |
-| 5.1.1 privacy | Data Not Collected, plus a hosted privacy policy URL. No permission prompts. |
+| 5.1.1 privacy | Data Not Collected, plus a hosted privacy policy URL (`https://sites.google.com/view/misprint-department/home`). No permission prompts. |
 | 3.1.1 payments | No in-app purchase. If the app is paid, the price is set in App Store Connect and never stated in the metadata. |
 | 1.x content | 4+, no objectionable content. |
 
@@ -246,9 +254,12 @@ screen does. Keep it to a few words per shot.
 ## Still to supply before submitting
 
 - A **Support URL** (page with a contact email).
-- A **hosted privacy policy** at a public URL (text in section 07).
 - The **screenshot set** (five shots described in section 09).
 - The **price** (the app ships with no in-app purchase either way).
+
+Done: privacy policy hosted at
+`https://sites.google.com/view/misprint-department/home`; reviewer demo video
+via the recording menu above.
 
 *Confirm the final character counts in App Store Connect, which shows a live
 counter as you type.*

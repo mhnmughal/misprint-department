@@ -245,6 +245,57 @@ Validate all levels: menu `Misprint/Validate All Levels` (7 → Training + Ch1).
 
 ## MCP CHANGE LOG
 
+### MCP-0023
+- Date: 2026-09-08
+- Agent: Claude (Sonnet 5), session "reviewer video + privacy policy"
+- Scene/Asset: `Packages/manifest.json`, `Packages/packages-lock.json`,
+  deleted `Assets/Scripts/Editor/Recording/`.
+- Change: Removed the two packages the user had re-added for the reviewer
+  video once it was captured — `com.unity.recorder` (and its transitive
+  `com.unity.timeline`, auto-dropped from the lock) and, as the final step,
+  `com.anklebreaker.unity-mcp`. Deleted the `MisprintDepartment.Editor.Recording`
+  asmdef + `ReviewerDemoRecorder.cs` first so nothing referenced
+  `Unity.Recorder.Editor`. Backups: `manifest.json.pre-recorder-removal.bak`
+  (plus the older `.pre-trim.bak` / `.pre-mcp-removal.bak`).
+- Reverify: manifest is back to the exact 32-dependency set verified clean in
+  MCP-0021 — nothing else to trim. `com.unity.modules.director` stays (base
+  Playables module pulled by animation/UGUI, tiny, not Timeline).
+- Reason: user instruction ("remove both packages now recorder and ankle
+  breaker mcp then commit and push and reverify any unnecessary package").
+- Validation (before the MCP removal): 0 compile errors / 0 warnings,
+  EditMode 48/48, `Misprint/Validate All Levels` → 13/13 PASS. No player
+  build re-run: recorder + timeline are editor-only and cannot affect it;
+  MCP-0021 already verified this 32-dep set builds (Windows + Android).
+  MCP removal: packages-lock no longer lists `anklebreaker`; `unity_*` MCP
+  tools are offline again.
+- Result: PASS
+
+### MCP-0022
+- Date: 2026-09-08
+- Agent: Claude (Sonnet 5), session "reviewer video + privacy policy"
+- Scene/Asset: `Assets/Scripts/Editor/Recording/` (new asmdef +
+  `ReviewerDemoRecorder.cs`), `Documentation/APP_STORE_LISTING.md`,
+  `README.md` intent unchanged.
+- Change: (a) Privacy policy URL added to the listing —
+  `https://sites.google.com/view/misprint-department/home` (supplied by user,
+  live). (b) New dev-only editor tool `MisprintDepartment.Editor.Recording`:
+  menu `Misprint/Recording/*` drives an unattended play-mode playthrough
+  (Bootstrap → sound-settings tour → Training Job → one level per batch, each
+  solved by its `referenceSolution` and run to PROOF APPROVED) while Unity
+  Recorder captures the Game view at **2868x1320** (iPhone 17 landscape),
+  H.264 MP4 + audio, 60fps, into `Recordings/`. User re-added
+  `com.anklebreaker.unity-mcp` + `com.unity.recorder` for this.
+  **Superseded by MCP-0023: the tool folder and both packages were removed
+  once the video was captured.** The video itself
+  (`Recordings/MisprintDepartment_ReviewerDemo_001.mp4`, gitignored) is kept.
+- Reason: user asked for a reviewer demo video for App Store Connect and
+  supplied the privacy policy link.
+- Validation: 0 compile errors. Recorded run completed clean (no exceptions,
+  no rejected reference-solution ops, all 8 proofs APPROVED).
+  `Recordings/MisprintDepartment_ReviewerDemo_001.mp4` = 2868x1320, H.264
+  (avc1) + AAC audio, 122.5 s, 30 MB. `Recordings/` is gitignored.
+- Result: PASS
+
 ### MCP-0015
 - Date: 2026-09-03
 - Agent: Claude (Sonnet 5), session "S3 — 12 levels + all tools + builds"
@@ -342,18 +393,28 @@ TextAssets; nothing in code loaded them at runtime.
 A ready-to-paste App Store Connect kit (name / subtitle / keyword options
 with character counts, a fresh US-English description with no em dashes,
 category, age rating, privacy answers, guideline check) is in the Claude
-artifact `9c25ae5b-adc7-4403-9b95-7d60862da87d`. Recommended category:
-**Puzzle** (primary) / **Strategy** (secondary). Outstanding items the
-developer must supply: a Support URL, a hosted privacy policy, screenshots,
-and the price decision (the app ships with no in-app purchase either way).
+artifact `9c25ae5b-adc7-4403-9b95-7d60862da87d` and in
+`Documentation/APP_STORE_LISTING.md`. Recommended category:
+**Puzzle** (primary) / **Strategy** (secondary).
+- Privacy policy: **LIVE** at
+  `https://sites.google.com/view/misprint-department/home` (2026-09-08).
+- Reviewer demo video: recorded on 2026-09-08 —
+  `Recordings/MisprintDepartment_ReviewerDemo_001.mp4` (2868x1320, H.264 +
+  audio, 2:02; gitignored, delivered to the user). The one-shot recording
+  tool that produced it was removed again in MCP-0023.
+- Still outstanding from the developer: a Support URL, the screenshot set,
+  and the price decision (no in-app purchase either way).
 
 ## NOTE FOR NEXT AGENT
-The Unity MCP bridge (`com.anklebreaker.unity-mcp`) has been **removed** from
-this project. `unity_*` MCP tools will NOT work until it is re-added:
-add `"com.anklebreaker.unity-mcp": "https://github.com/AnkleBreaker-Studio/unity-mcp-plugin.git"`
-to `Packages/manifest.json` dependencies and let Unity resolve. All build /
-level / validation tooling (`Misprint/Build/*`, `Misprint/Validate All Levels`)
-lives in `MisprintDepartment.Editor` and is unaffected.
+The Unity MCP bridge (`com.anklebreaker.unity-mcp`) is **removed** again as of
+MCP-0023 (2026-09-08). It was re-added briefly for the reviewer video, then
+removed with `com.unity.recorder` + `com.unity.timeline`. `unity_*` MCP tools
+will NOT work until it is re-added: put
+`"com.anklebreaker.unity-mcp": "https://github.com/AnkleBreaker-Studio/unity-mcp-plugin.git"`
+back in `Packages/manifest.json` and let Unity resolve. Manifest is back to
+the MCP-0021-verified 32-dependency set. All build / level / validation
+tooling (`Misprint/Build/*`, `Misprint/Validate All Levels`) lives in
+`MisprintDepartment.Editor` and is unaffected.
 
 ### MCP-0019
 - Date: 2026-09-03
