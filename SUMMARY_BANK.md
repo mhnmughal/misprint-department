@@ -245,6 +245,27 @@ Validate all levels: menu `Misprint/Validate All Levels` (7 → Training + Ch1).
 
 ## MCP CHANGE LOG
 
+### MCP-0026
+- Date: 2026-09-08
+- Agent: Claude (Sonnet 5), session "reviewer video + privacy policy"
+- Scene/Asset: `Packages/manifest.json`, `Packages/packages-lock.json`,
+  `Documentation/APP_REVIEW_COMPLIANCE.md`, `SUMMARY_BANK.md`.
+- Change: Removed `com.anklebreaker.unity-mcp` again (user request, post iOS
+  build). `unity_*` MCP tools are offline. manifest + lock now byte-identical
+  to committed HEAD (the 32-dep set) — working tree clean, nothing to commit
+  for `Packages/`. Backup: `manifest.json.pre-mcp-removal-2.bak`.
+- Also corrected MCP-0025's wrong diagnosis: `PerformanceTestRunInfo.json` in
+  the player is NOT MCP contamination. `com.unity.test-framework.performance`
+  is a URP transitive (universal→core→collections→test-framework.performance)
+  present in the committed lock; its `TestRunBuilder` is an
+  `IPreprocessBuildWithReport` that runs on every build regardless of MCP.
+  It is benign build metadata. Docs updated.
+- Reason: user instruction ("remove ankle breaker mcp now").
+- Validation: `com.anklebreaker.unity-mcp` gone from manifest, lock, and
+  `Library/PackageCache`. No `error CS` in Editor.log. All
+  `MisprintDepartment.*` assemblies intact. `git status` clean.
+- Result: PASS
+
 ### MCP-0025
 - Date: 2026-09-08
 - Agent: Claude (Sonnet 5), session "reviewer video + privacy policy"
@@ -274,14 +295,19 @@ Validate all levels: menu `Misprint/Validate All Levels` (7 → Training + Ch1).
   `NSAppTransportSecurity`, no `CFBundleURLTypes`, no `UIBackgroundModes`, no
   `.entitlements`, `ITSAppUsesNonExemptEncryption=false`. Both privacy
   manifests present (engine `UnityFramework/PrivacyInfo.xcprivacy` +
-  app-level). **Caveat:** this build was made with the MCP bridge active,
-  which pulls `com.unity.collections` → `com.unity.test-framework.performance`
-  and packs a `PerformanceTestRunInfo.json` TextAsset + the
-  `Unity.PerformanceTesting` assembly into the player. The submission build
-  MUST be regenerated with `com.anklebreaker.unity-mcp` removed (as in
-  MCP-0023) — that drops both and yields a clean `resources.assets`.
-- Result: PASS (Credits removed; Xcode project generates + inspects clean
-  once MCP is out; compiling the binary is still macOS-only)
+  app-level).
+- Note (cause corrected in MCP-0026): the player's `resources.assets` carries
+  a `PerformanceTestRunInfo.json` TextAsset. Source is
+  `com.unity.test-framework.performance` — a **URP transitive**
+  (universal→core→collections→test-framework.performance), already in the
+  committed manifest set, **NOT** the MCP bridge. Its
+  `TestRunBuilder : IPreprocessBuildWithReport` writes it on every build, all
+  platforms. Content = build metadata only (Unity version, package list,
+  player-settings snapshot); no user data; Apple does not flag it. Strippable
+  with a higher-callbackOrder `IPreprocessBuildWithReport` if a spotless build
+  is wanted.
+- Result: PASS (Credits removed; Xcode project generates + inspects clean;
+  compiling the binary is still macOS-only)
 
 ### MCP-0024
 - Date: 2026-09-08
@@ -469,19 +495,19 @@ artifact `9c25ae5b-adc7-4403-9b95-7d60862da87d` and in
 
 ## NOTE FOR NEXT AGENT
 The Unity MCP bridge (`com.anklebreaker.unity-mcp`) has been added and removed
-several times (MCP-0021 removed it; re-added + removed for the reviewer video
-in MCP-0022/0023; **re-added again 2026-09-08 for the Credits removal + iOS
-build in MCP-0025 and left in the working tree, NOT committed**).
-`Packages/manifest.json` + `packages-lock.json` are modified.
-- The **committed** manifest is the MCP-0021-verified 32-dependency set. That
-  is the intended shipping set.
-- The MCP bridge pulls `com.unity.collections` +
-  `com.unity.test-framework.performance` transitively, which contaminate a
-  player build (`PerformanceTestRunInfo.json`, `Unity.PerformanceTesting`
-  assembly). **Before generating the submission iOS build, remove
-  `com.anklebreaker.unity-mcp`** (and let the lock re-resolve), then build.
-- `unity_*` MCP tools stop working the moment it is removed. All
-  `Misprint/Build/*` + `Misprint/Validate All Levels` tooling is in
+several times (MCP-0021, re-added+removed for the reviewer video in
+MCP-0022/0023, re-added+removed for the Credits removal + iOS build in
+MCP-0025/0026). **As of MCP-0026 it is removed and the working tree is clean**
+— `Packages/manifest.json` + `packages-lock.json` match committed HEAD (the
+32-dependency set), which is the intended shipping set.
+- `unity_*` MCP tools do NOT work. To restore: put
+  `"com.anklebreaker.unity-mcp": "https://github.com/AnkleBreaker-Studio/unity-mcp-plugin.git"`
+  back in `Packages/manifest.json` and let Unity resolve. Do NOT commit that.
+- `com.unity.test-framework.performance` (a URP transitive, in the committed
+  set) writes `PerformanceTestRunInfo.json` into every player build via an
+  `IPreprocessBuildWithReport`. Benign build metadata, no user data, Apple
+  does not flag it (see APP_REVIEW_COMPLIANCE.md §1). Optional to strip.
+- All `Misprint/Build/*` + `Misprint/Validate All Levels` tooling is in
   `MisprintDepartment.Editor` and works with or without MCP.
 
 ### MCP-0019

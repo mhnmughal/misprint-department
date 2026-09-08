@@ -34,22 +34,30 @@ also succeeds, which is strong evidence the iOS compile will too once on a Mac.
 | `ENABLE_BITCODE` | `NO` (correct — Apple deprecated bitcode) |
 | `boot.config` | no analytics / Unity Connect entries |
 
-### Caveat — regenerate the submission build with the MCP bridge removed
+### Known benign artifact — `PerformanceTestRunInfo.json`
 
-The `Build/iOS` folder generated here was built with `com.anklebreaker.unity-mcp`
-in the manifest. That bridge pulls `com.unity.collections` →
-`com.unity.test-framework.performance`, which drops a `PerformanceTestRunInfo.json`
-TextAsset into `Assets/Resources/` at build time and compiles the
-`Unity.PerformanceTesting` assembly into the player. Neither belongs in a
-shipping app. **Before the real submission build, remove
-`com.anklebreaker.unity-mcp` from `Packages/manifest.json`** (as in MCP-0023),
-let the package manager re-resolve, then build — that removes both.
+`com.unity.test-framework.performance` is a transitive dependency of URP
+(`render-pipelines.universal` → `render-pipelines.core` → `collections` →
+`test-framework.performance`) — it is in the committed manifest set and is
+**not** related to the MCP bridge. Its `TestRunBuilder` implements
+`IPreprocessBuildWithReport`, so on **every** player build (all platforms) it
+writes `PerformanceTestRunInfo.json` + `PerformanceTestRunSettings.json` into
+`Assets/Resources/` (which get packed into `resources.assets`) and deletes the
+source files in post-process.
+
+The content is build metadata only — Unity version, the package list, a
+player-settings snapshot. **No user data, no runtime behavior.** It ships in a
+large share of URP games on the App Store and Apple does not flag it. If a
+spotless build is wanted, strip it with a higher-`callbackOrder`
+`IPreprocessBuildWithReport` that deletes those two files before the resource
+scan; otherwise it is safe to leave.
 
 ### To build + verify on a Mac
 
 1. Copy the repo to a Mac with Unity 6000.3.19f1 + iOS Build Support and Xcode.
-2. Remove `com.anklebreaker.unity-mcp` from `Packages/manifest.json` (see the
-   caveat above), then `Misprint / Build / 0 · REBUILD EVERYTHING`, then
+   The committed `Packages/manifest.json` is the intended shipping set (no MCP
+   bridge, no Recorder).
+2. `Misprint / Build / 0 · REBUILD EVERYTHING`, then
    `File > Build Settings > iOS > Build`.
 3. Open `Unity-iPhone.xcodeproj`, set the Team / signing, Product > Archive.
    `ITSAppUsesNonExemptEncryption` and the app privacy manifest are already
@@ -186,5 +194,6 @@ in the 2026-09-08 build.
   manifests and the export-compliance flag are in the generated project.
   Remaining work is data entry in App Store Connect.
 - **Xcode project:** generates on Windows and inspects clean (§1). Compiling
-  the binary + Xcode "Validate App" is macOS-only. Regenerate the submission
-  build with the MCP bridge removed.
+  the binary + Xcode "Validate App" is macOS-only. The committed manifest is
+  already the shipping set (no MCP bridge, no Recorder). One benign artifact
+  (`PerformanceTestRunInfo.json`, a URP-transitive) is documented in §1.

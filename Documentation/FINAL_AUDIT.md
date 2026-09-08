@@ -48,8 +48,8 @@ Known Release-Blocking Bugs ........... NONE
 - **Credits panel + buttons removed 2026-09-08** (user request); MainWorkshop
   regenerated, hierarchy Credits-free, 48/48 + 13/13 still green.
 - Still owed in App Store Connect: privacy-policy URL entry, Support URL,
-  screenshots, price. Submission iOS build must be generated with the MCP
-  bridge removed (see SUMMARY_BANK "NOTE FOR NEXT AGENT").
+  screenshots, price. The committed manifest is the shipping set (no MCP
+  bridge, no Recorder); build the submission binary from that on a Mac.
 - Package trim done this session (see PACKAGE_AUDIT.md); `com.anklebreaker.unity-mcp`
   removed as the final step.
 - BUG-024 (PlayMode test runner enumerates the flow suite opaquely via MCP;
