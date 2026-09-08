@@ -245,6 +245,30 @@ Validate all levels: menu `Misprint/Validate All Levels` (7 → Training + Ch1).
 
 ## MCP CHANGE LOG
 
+### MCP-0024
+- Date: 2026-09-08
+- Agent: Claude (Sonnet 5), session "reviewer video + privacy policy"
+- Scene/Asset: `ProjectSettings/UnityConnectSettings.asset`,
+  `Documentation/APP_REVIEW_COMPLIANCE.md` (new), `FINAL_AUDIT.md`,
+  `README.md`.
+- Change: App Review 5.6 (Developer Code of Conduct) + 5.1.1 (Privacy)
+  verification pass. (a) Disabled the Unity services layer entirely —
+  `UnityConnectSettings.m_Enabled` 1→0 and `InsightsSettings.
+  m_EngineDiagnosticsEnabled` 1→0 (all individual services were already off).
+  (b) Fetched the live privacy policy and confirmed its text matches the
+  binary (collects nothing, no network, only `Handheld.Vibrate`). (c) Wrote
+  `APP_REVIEW_COMPLIANCE.md`: 5.6 table (no dead UI, no review manipulation,
+  no hidden features, accurate metadata), 5.1.1 table (policy live/accurate,
+  Data Not Collected, no permission strings, privacy-manifest note), export-
+  compliance (`ITSAppUsesNonExemptEncryption = NO`), and the macOS/Xcode
+  build-and-Validate steps.
+- Reason: user asked to generate + verify the Xcode build for 5.6 / privacy.
+- Validation: code scan clean (no network/tracking/permission APIs);
+  `com.unity.services.*` absent; iOS usage-description strings all empty;
+  privacy policy page returns real public content. Xcode build itself is
+  still the macOS-only external blocker.
+- Result: PASS (Xcode binary blocked on toolchain, not on any code issue)
+
 ### MCP-0023
 - Date: 2026-09-08
 - Agent: Claude (Sonnet 5), session "reviewer video + privacy policy"

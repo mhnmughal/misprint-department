@@ -60,6 +60,11 @@ picks, age rating and privacy answers, guideline check) is in
 Interactive version with per-field copy buttons:
 <https://claude.ai/code/artifact/9c25ae5b-adc7-4403-9b95-7d60862da87d>
 
+App Review Guideline 5.6 (Developer Code of Conduct) and 5.1.1 (Privacy)
+verification, plus the macOS/Xcode build-and-validate steps, are in
+[`Documentation/APP_REVIEW_COMPLIANCE.md`](Documentation/APP_REVIEW_COMPLIANCE.md).
+Privacy policy: <https://sites.google.com/view/misprint-department/home>
+
 ## Audio and typography
 
 All sound effects are generated procedurally in-project

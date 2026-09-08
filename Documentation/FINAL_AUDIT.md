@@ -16,8 +16,9 @@ Environment ........................... PASS   (authored 2.5D workstation + mech
 Audio ................................. PASS   (14 clips, mixer Master/Music/SFX/UI, sliders drive params)
 Audio Licensing ....................... PASS   (100% project-generated; font = Liberation Sans, SIL OFL)
 Save System ........................... PASS   (versioned JSON, corrupt-safe, reset, relaunch persistence)
-Offline Audit ......................... PASS   (no network / ads / analytics / tracking / remote config / web views)
+Offline Audit ......................... PASS   (no network / ads / analytics / tracking / remote config / web views; UnityConnect + Engine Diagnostics disabled 2026-09-08)
 Third-Party SDK Audit ................. PASS   (none)
+App Review 5.6 / 5.1.1 Privacy ........ PASS   (privacy policy LIVE + accurate; Data Not Collected; no dead UI; no review manipulation — see APP_REVIEW_COMPLIANCE.md)
 Package Audit ......................... PASS   (trimmed: timeline / visualscripting / multiplayer.center / collab-proxy / ide.rider / 2D tooling / unused engine modules removed; MCP removed last. 0 errors, tests + build green.)
 Mobile Settings ....................... PASS   (landscape; company "Misprint Department team"; bundle com.misprintdepartmentteam.misprintdepartment; IL2CPP; Android ARM64; icon; 60 fps)
 Icon .................................. PASS   (original 1024², assigned default + iOS + Android)
@@ -35,7 +36,13 @@ Known Release-Blocking Bugs ........... NONE
 - **iOS build** cannot be produced on this Windows machine — it needs macOS +
   Xcode. Player Settings are iOS-ready (IL2CPP, landscape, bundle id, icons);
   the Android IL2CPP/ARM64 build succeeding is strong evidence the iOS build
-  will too once on a Mac.
+  will too once on a Mac. Build + validation steps and the full App Review
+  5.6 / privacy verification are in **APP_REVIEW_COMPLIANCE.md** (2026-09-08).
+- **Privacy policy is LIVE:** `https://sites.google.com/view/misprint-department/home`
+  — content verified to match the binary (collects nothing, no network).
+  Still owed in App Store Connect: the URL entry, the Support URL,
+  `ITSAppUsesNonExemptEncryption = NO` at archive time, and a Mac-side check
+  that the generated Xcode project carries a `PrivacyInfo.xcprivacy`.
 - Package trim done this session (see PACKAGE_AUDIT.md); `com.anklebreaker.unity-mcp`
   removed as the final step.
 - BUG-024 (PlayMode test runner enumerates the flow suite opaquely via MCP;
