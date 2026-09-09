@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using MisprintDepartment.Core;
 using MisprintDepartment.Game.UI;
 
@@ -25,6 +26,7 @@ namespace MisprintDepartment.Game
         [SerializeField] ConfirmDialog dialog;
         [SerializeField] Toast toast;
         [SerializeField] UIPanel instructionsPanel;
+        [SerializeField] Button instructionsCloseButton;
 
         static readonly PrintCommand[] ReplaceOptions =
         {
@@ -58,6 +60,8 @@ namespace MisprintDepartment.Game
             pause.Resume += ClosePause;
             pause.Restart += () => { ClosePause(); Replay(); };
             pause.Instructions += () => instructionsPanel?.Show();
+            if (instructionsCloseButton != null)
+                instructionsCloseButton.onClick.AddListener(() => instructionsPanel.Hide());
             pause.Workshop += () => dialog.Ask("Return to Workshop?",
                 "This job is not finished. Progress on it will be lost.",
                 "Return", ReturnToWorkshop);

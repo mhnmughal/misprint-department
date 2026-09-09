@@ -74,7 +74,7 @@ namespace MisprintDepartment.Editor.Build
             var tutorial = BuildTutorial(safe, stripContent, ((RectTransform)tray.transform), ((RectTransform)proof.transform));
             var pause = BuildPause(safe);
             var result = BuildResult(safe);
-            var instructions = BuildInstructions(safe);
+            var instructions = BuildInstructions(safe, out var instructionsClose);
             var dialog = WorkshopDialogClone(safe);
 
             // wire flow
@@ -91,6 +91,7 @@ namespace MisprintDepartment.Editor.Build
             W.Wire(flow, "dialog", dialog);
             W.Wire(flow, "toast", toast);
             W.Wire(flow, "instructionsPanel", instructions);
+            W.Wire(flow, "instructionsCloseButton", instructionsClose);
 
             W.WireList(tray, "toolButtons", toolButtons);
             W.Wire(tray, "undoButton", undoButton);
@@ -479,7 +480,7 @@ namespace MisprintDepartment.Editor.Build
             return b;
         }
 
-        static UIPanel BuildInstructions(Transform safe)
+        static UIPanel BuildInstructions(Transform safe, out Button closeButton)
         {
             var go = PanelKit.Plain("InstructionsPanel", safe, UiKit.Paper);
             var panel = go.AddComponent<UIPanel>();
@@ -498,7 +499,9 @@ namespace MisprintDepartment.Editor.Build
             var bRt = (RectTransform)back.transform;
             bRt.anchorMin = new Vector2(0.5f, 0.06f); bRt.anchorMax = new Vector2(0.5f, 0.06f); bRt.pivot = new Vector2(0.5f, 0);
             UiKit.Size(bRt, 280, 64);
-            back.onClick.AddListener(() => panel.Hide());
+            // GameplayFlow wires the click at runtime (a lambda AddListener here
+            // is not serialized into the built scene).
+            closeButton = back;
             return panel;
         }
 

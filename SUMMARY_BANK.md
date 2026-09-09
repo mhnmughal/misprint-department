@@ -245,6 +245,29 @@ Validate all levels: menu `Misprint/Validate All Levels` (7 → Training + Ch1).
 
 ## MCP CHANGE LOG
 
+### MCP-0031
+- Date: 2026-09-09
+- Agent: Claude (Sonnet 5), session "app review + pause-menu fix"
+- Scene/Asset: `Assets/Scripts/Game/Gameplay/GameplayFlow.cs`,
+  `Assets/Scripts/Editor/Build/GameplaySceneBuilder.cs`,
+  `Assets/Scenes/Gameplay.unity` (rebuilt).
+- Change: **Fixed the pause-menu → Instructions panel CLOSE button** (did
+  nothing). Cause: `GameplaySceneBuilder.BuildInstructions` wired the click
+  with `back.onClick.AddListener(() => panel.Hide())` — a lambda listener is
+  **not serialized into the built scene**, so the button had 0 listeners at
+  runtime. Fix follows the existing pattern (WorkshopNav.manualBackButton):
+  `GameplayFlow` now has `[SerializeField] Button instructionsCloseButton`,
+  wired in `Awake()` to `instructionsPanel.Hide()`; the builder returns the
+  button and `W.Wire`s it. This was the only `onClick.AddListener` in any
+  editor builder — no sibling bug.
+- Reason: user bug report.
+- Validation: play-mode test (Bootstrap→Gameplay, open pause, INSTRUCTIONS
+  opens the panel, CLOSE → `panel.IsVisible` false + alpha fading to 0, pause
+  menu still shown underneath). 0 compile errors, 0 console errors. MCP bridge
+  re-added for the scene rebuild + test, removed again; manifest back to the
+  32-dep set.
+- Result: PASS
+
 ### MCP-0030
 - Date: 2026-09-08
 - Agent: Claude (Sonnet 5), session "reviewer video + privacy policy"
