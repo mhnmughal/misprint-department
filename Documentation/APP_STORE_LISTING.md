@@ -316,7 +316,8 @@ screen does. Keep it to a few words per shot.
 | 2.3 accurate metadata | Description, subtitle, and keywords are written from scratch for this app and match what it does. No exaggeration. |
 | 4.2 minimum functionality | A guided training job plus twelve handcrafted levels with six mechanics and a rating system. Not a thin wrapper. |
 | 5.1.1 privacy | Data Not Collected, plus a hosted privacy policy URL (`https://sites.google.com/view/misprint-department/home`). No permission prompts. |
-| 3.1.1 payments | No in-app purchase. If the app is paid, the price is set in App Store Connect and never stated in the metadata. |
+| 3.1.1 payments | Free (price $0.00). No in-app purchase, no subscription. |
+| 3.2 business model | Free consumer game, no monetization, general public distribution — not enterprise/internal. |
 | 1.x content | 4+, no objectionable content. |
 
 ---
@@ -326,8 +327,11 @@ screen does. Keep it to a few words per shot.
 - Publish the **Support page** (text in section 08) as a second page on the
   Google Site and enter its URL:
   `https://sites.google.com/view/misprint-department/support`.
-- The **price** (the app ships with no in-app purchase either way).
 - The iOS binary, built + signed + validated on a Mac (APP_REVIEW_COMPLIANCE.md).
+- Reply to Apple's Guideline 2.1 request (`APP_REVIEW_RESPONSE.md`) with the
+  physical-device screen recording.
+
+**Price: Free ($0.00)** — set in App Store Connect. No in-app purchase.
 
 Done: privacy policy live
 (`https://sites.google.com/view/misprint-department/home`); screenshots for

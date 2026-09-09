@@ -590,12 +590,12 @@ artifact `9c25ae5b-adc7-4403-9b95-7d60862da87d` and in
   new-account info request, not a defect). Full reply + Notes-field text +
   physical-device screen-recording steps in
   `Documentation/APP_REVIEW_RESPONSE.md`.
+- Price: **Free ($0.00)**, no in-app purchase (set in App Store Connect).
 - Still outstanding from the developer:
   1. Publish the Support page + enter its URL.
-  2. Set the price.
-  3. Build/sign/validate the iOS binary on a Mac.
-  4. Record the app running on a **physical device** and reply to Apple with
-     everything in `APP_REVIEW_RESPONSE.md`.
+  2. Build/sign/validate the iOS binary on a Mac.
+  3. Record the app running on a **physical iPhone (iOS 26.6.1)** and reply
+     to Apple with everything in `APP_REVIEW_RESPONSE.md`.
 
 ## NOTE FOR NEXT AGENT
 The Unity MCP bridge (`com.anklebreaker.unity-mcp`) has been added and removed

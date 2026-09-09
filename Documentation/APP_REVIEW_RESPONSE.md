@@ -52,10 +52,10 @@ do not upload `01_workshop`).
 ## Full reply — paste into the App Store Connect message
 
 ```
-Thank you for the review. Misprint Department is a single-player, fully
-offline logic puzzle game. It has no user accounts, no in-app purchases,
-no user-generated content, and makes no network connections. Answers to
-each point:
+Thank you for the review. Misprint Department is a free, single-player,
+fully offline logic puzzle game. It has no user accounts, no in-app
+purchases, no advertising, no user-generated content, and makes no network
+connections. Answers to each point:
 
 1. SCREEN RECORDING
 A screen recording captured on a physical iPhone running iOS 26.6.1 is
@@ -68,8 +68,9 @@ progress).
   account, so account deletion does not apply.
 - User-generated content: none. There is no content creation, sharing,
   reporting, or blocking anywhere in the app.
-- Paid content or features: none. All 12 levels plus the Training Job are
-  included in the app. There is no in-app purchase.
+- Paid content or features: none. The app is free. All 12 levels plus the
+  Training Job are included; there is no in-app purchase, subscription, or
+  advertising.
 
 2. PURPOSE AND TARGET AUDIENCE
 Misprint Department is a 2.5D deduction puzzle. A mechanical command
@@ -117,10 +118,9 @@ haptic feedback, which the player can turn off in Settings.
 
 5. REGIONAL DIFFERENCES
 There are none. The app behaves identically in every region. There is no
-region-specific content, no geo-gating, and no localization - the app is
-English (U.S.) only. Because it makes no network calls and reads no
-location or locale data, behavior does not vary by country or device
-region.
+region-specific content and no geo-gating. Because it makes no network
+calls and reads no location or locale data, its behavior does not vary by
+country or device region.
 
 6. REGULATED INDUSTRY / PROTECTED THIRD-PARTY MATERIAL
 Not applicable. Misprint Department is an original game and does not
@@ -131,7 +131,9 @@ permits commercial use. No licenses, credentials, or authorizations are
 required.
 
 The app is intended for the general public on the App Store; it is not an
-enterprise, organization, or employee-only app.
+enterprise, organization, or employee-only app. It is offered free of
+charge with no monetization of any kind - no in-app purchases, no ads, no
+subscriptions.
 
 A demo account is not needed - the app has no login.
 ```
@@ -143,14 +145,15 @@ A demo account is not needed - the app has no login.
 ```
 Misprint Department is a single-player, fully OFFLINE logic puzzle game.
 
+- Free. No in-app purchases, no ads, no subscriptions, no monetization.
+  All 12 levels + the Training Job are in the app.
 - No accounts, no login, no account deletion (no account is ever created).
-- No in-app purchases. All 12 levels + the Training Job are in the app.
 - No user-generated content, sharing, reporting, or blocking.
 - No network connections. No external services: no backend/API, no
   analytics, ads, crash reporting, attribution, auth, payments, AI, or
   cloud. Built with Unity; all content is bundled.
 - Only device feature used: optional haptics (toggle in Settings).
-- English (U.S.) only. Behaves identically in every region.
+- Behaves identically in every region.
 - Original content. Third-party asset: Liberation Sans font (SIL OFL).
 - Consumer game for the general public, not an enterprise/internal app.
 
@@ -170,5 +173,5 @@ account needed.
 | 2.1 bugs/crashes — test on physical devices | Do a launch-to-finish pass on each supported device before resubmit. Editor + Windows + Android player builds are clean; on-device pass is the developer's. |
 | 2.1 accessing the app — demo credentials | None needed; no login. Stated in the reply. |
 | 2.3.3 screenshots — show the app in use | Swap to gameplay-first; drop `01_workshop` (menu). See APP_STORE_LISTING.md §09. |
-| 3.1.1 in-app purchase | None. |
-| 3.2 other business models — B2B/internal apps | N/A. Consumer game, public distribution. Stated in the reply. |
+| 3.1.1 in-app purchase | None. App is free ($0.00), no subscription. |
+| 3.2 other business models — B2B/internal apps | N/A. Free consumer game, no monetization, public distribution. Stated in the reply. |
