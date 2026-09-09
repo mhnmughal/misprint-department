@@ -1,13 +1,10 @@
 # APP REVIEW RESPONSE — Guideline 2.1, Information Needed
 
 Apple's 2026-09-09 note is the **standard new-account information request**, not
-a rejection for a defect. Nothing in the app is wrong. Reply in App Store
-Connect with the text below and also paste the condensed version into
-**App Review Information → Notes** so it carries to future submissions.
-
-Almost every question is N/A because Misprint Department is a single-player,
-fully offline puzzle game: no accounts, no in-app purchase, no user-generated
-content, no external services.
+a rejection for a defect. Nothing in the app is wrong. Paste the reply below
+into the Resolution Center (it is ~2,600 chars, under the 4,000 limit) and
+paste the condensed version into **App Review Information → Notes** so it
+carries to future submissions.
 
 ---
 
@@ -49,93 +46,65 @@ do not upload `01_workshop`).
 
 ---
 
-## Full reply — paste into the App Store Connect message
+## Full reply — paste into the Resolution Center message
+
+Under 4000 characters. Facts only, no preamble.
 
 ```
-Thank you for the review. Misprint Department is a free, single-player,
-fully offline logic puzzle game. It has no user accounts, no in-app
-purchases, no advertising, no user-generated content, and makes no network
-connections. Answers to each point:
+Misprint Department is a free, single-player, offline logic puzzle game.
+No accounts, no in-app purchase, no ads, no user-generated content, no
+network connections.
 
 1. SCREEN RECORDING
-A screen recording captured on a physical iPhone running iOS 26.6.1 is
-attached. It begins by launching the app and shows the typical flow: the
-workshop screen, the guided Training Job played to completion, Job 001
-solved using the correction tools and the Run Proof lever with its result
-screen, and the Settings screen (music, sound, interface, haptics, reset
-progress).
-- Account registration / login / deletion: none. The app never creates an
-  account, so account deletion does not apply.
-- User-generated content: none. There is no content creation, sharing,
-  reporting, or blocking anywhere in the app.
-- Paid content or features: none. The app is free. All 12 levels plus the
-  Training Job are included; there is no in-app purchase, subscription, or
-  advertising.
+Attached: a recording from a physical iPhone on iOS 26.6.1, starting from
+launch. It shows the workshop screen, the guided Training Job to
+completion, Job 001 solved with the correction tools and the Run Proof
+lever, and the Settings screen.
+- Account registration / login / deletion: none. No account is created.
+- User-generated content: none. No creation, sharing, reporting, blocking.
+- Paid content or features: none. All content ships in the app.
 
-2. PURPOSE AND TARGET AUDIENCE
-Misprint Department is a 2.5D deduction puzzle. A mechanical command
-printer prints a route as a strip of instructions (Move, Turn Left, Turn
-Right, Wait, Reverse, Jump) that contains one known, systematic printing
-defect for that job - for example two commands swapped, a command
-duplicated, or a slot shifted. The player reads the defect, uses a limited
-set of bench tools (Rotate, Replace, Swap, Cross Out, Shift, Restore) to
-correct the misprinted strip, then pulls a lever to run the corrected
-route and see whether it reaches the target. Each job is scored Verified /
-Clean Proof / Master Proof by how efficiently it was solved.
+2. PURPOSE AND AUDIENCE
+A deduction puzzle. A printer outputs a route as instruction tiles (Move,
+Turn Left, Turn Right, Wait, Reverse, Jump) with one known printing defect
+per job. The player reads the defect, corrects the tiles with a limited
+set of bench tools (Rotate, Replace, Swap, Cross Out, Shift, Restore),
+then runs the corrected route to the target. Jobs are scored Verified /
+Clean Proof / Master Proof.
+Audience: logic and programming-puzzle players; anyone wanting a calm
+offline puzzle game. Rated 4+.
 
-The value it provides: short, self-contained logic puzzles with a retro
-"print quality control" workshop theme. A few minutes per level, no
-timers, no penalties, playable entirely offline.
+3. SETUP AND ACCESS
+No setup, login, credentials, or sample files. Launch and play.
+- Opens to the workshop screen; tap Start.
+- First launch gives the guided Training Job.
+- Job Files lists all 12 jobs; they unlock in order. Any job can be opened
+  directly from Job Files for review.
+- In a job: tap a tool in the tray, tap the misprinted command, then pull
+  the Run Proof lever.
+- Settings (music, sound, haptics, reset progress) is on the workshop
+  screen.
+- Progress saves to one local file on the device.
 
-Target audience: players who enjoy logic, deduction, and programming-style
-puzzles, and anyone wanting a calm offline puzzle game. Rated 4+; no
-violence, mature themes, gambling, chat, or objectionable content.
-
-3. SETUP AND ACCESSING MAIN FEATURES
-No setup, login, credentials, or sample files are required. Launch the app
-and everything is available immediately.
-- The app opens to the workshop screen. Tap START INSPECTION (or CONTINUE
-  INSPECTION) to begin.
-- A first launch gives the guided Training Job, which teaches the loop
-  step by step.
-- Job Files shows all 12 jobs; they unlock in order as each is completed.
-  For review you may open any job directly from Job Files.
-- In a job: the printed route strip is at the top, the current defect is
-  on the DEFECT card, the tools are in the tray at the lower left. Tap a
-  tool, then tap the command to fix. Pull the RUN PROOF lever to execute.
-- Settings (music, sound effects, interface volume, haptics, reset
-  progress) is reached from the workshop screen.
-- Progress saves automatically to one local file after each job.
-
-4. EXTERNAL SERVICES, TOOLS, OR PLATFORMS
-None. The app uses no external services of any kind: no backend or API, no
-data providers, no authentication or account service, no payment
+4. EXTERNAL SERVICES
+None. No backend or API, no data providers, no authentication, no payment
 processor, no analytics, crash reporting, advertising, or attribution SDK,
-no AI or machine-learning service, and no cloud storage or sync. The app
-makes no network connections. It is built with the Unity engine; all game
-content is bundled in the app. The only device capability used is optional
-haptic feedback, which the player can turn off in Settings.
+no AI service, no cloud storage or sync. No network connections. Built
+with the Unity engine; all content is bundled. The only device capability
+used is optional haptics, toggleable in Settings.
 
 5. REGIONAL DIFFERENCES
-There are none. The app behaves identically in every region. There is no
-region-specific content and no geo-gating. Because it makes no network
-calls and reads no location or locale data, its behavior does not vary by
-country or device region.
+None. Identical behavior in every region. No region-specific content, no
+geo-gating, no location or locale logic.
 
-6. REGULATED INDUSTRY / PROTECTED THIRD-PARTY MATERIAL
-Not applicable. Misprint Department is an original game and does not
-operate in any regulated industry. All code, artwork, level design, and
-audio are original work by the developer. The only third-party asset is
-the typeface Liberation Sans, used under the SIL Open Font License, which
-permits commercial use. No licenses, credentials, or authorizations are
-required.
+6. REGULATED INDUSTRY / PROTECTED MATERIAL
+Not applicable. Original game, not in any regulated industry. All code,
+art, level design, and audio are original. The only third-party asset is
+the Liberation Sans typeface under the SIL Open Font License (commercial
+use permitted). No licenses or authorizations required.
 
-The app is intended for the general public on the App Store; it is not an
-enterprise, organization, or employee-only app. It is offered free of
-charge with no monetization of any kind - no in-app purchases, no ads, no
-subscriptions.
-
-A demo account is not needed - the app has no login.
+The app is free with no monetization and is for the general public, not an
+enterprise or internal app. No demo account is needed.
 ```
 
 ---
