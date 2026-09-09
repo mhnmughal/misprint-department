@@ -1,10 +1,14 @@
 # APP REVIEW RESPONSE — Guideline 2.1, Information Needed
 
 Apple's 2026-09-09 note is the **standard new-account information request**, not
-a rejection for a defect. Nothing in the app is wrong. Paste the reply below
-into the Resolution Center (it is ~2,600 chars, under the 4,000 limit) and
-paste the condensed version into **App Review Information → Notes** so it
-carries to future submissions.
+a rejection for a defect. The app is complete; a device QA pass since the
+original submission fixed one issue (the in-game Instructions panel Close
+button) and tightened the menu panels, so **upload a fresh build from the
+latest `main` and record that build** — see below.
+
+Paste the reply below into the Resolution Center (~2,700 chars, under the
+4,000 limit) and paste the condensed version into **App Review Information →
+Notes** so it carries to future submissions.
 
 ---
 
@@ -16,8 +20,9 @@ Apple requires real hardware, current OS, starting from launch.
 
 1. Confirm the iPhone is on the latest public iOS (Settings → General →
    Software Update). 26.6.1 is fine if it is current.
-2. Install the build via TestFlight — the build is already in App Store
-   Connect, so add yourself as an internal tester and install from TestFlight.
+2. Build a **fresh binary from the latest `main`** on the Mac (it has fixes
+   the build in App Store Connect does not), validate it in Xcode, upload it,
+   and install *that* build on the iPhone via TestFlight. Record this build.
 3. On the device: Settings → Control Center → add **Screen Recording**.
 4. Force-quit the app. Start the screen recording, wait 1 second, then launch
    Misprint Department from the home screen.
@@ -55,11 +60,16 @@ Misprint Department is a free, single-player, offline logic puzzle game.
 No accounts, no in-app purchase, no ads, no user-generated content, no
 network connections.
 
+The build with this reply is our latest, validated in Xcode. Since the
+first submission we did a full pass on physical devices and fixed one
+issue: the Close button on the in-game Instructions panel now dismisses
+the panel correctly.
+
 1. SCREEN RECORDING
-Attached: a recording from a physical iPhone on iOS 26.6.1, starting from
-launch. It shows the workshop screen, the guided Training Job to
-completion, Job 001 solved with the correction tools and the Run Proof
-lever, and the Settings screen.
+Attached: a recording of this build from a physical iPhone on iOS 26.6.1,
+starting from launch. It shows the workshop screen, the guided Training
+Job to completion, Job 001 solved with the correction tools and the Run
+Proof lever, and the Settings screen.
 - Account registration / login / deletion: none. No account is created.
 - User-generated content: none. No creation, sharing, reporting, blocking.
 - Paid content or features: none. All content ships in the app.
@@ -139,7 +149,7 @@ account needed.
 
 | Apple bullet | This app |
 |---|---|
-| 2.1 bugs/crashes — test on physical devices | Do a launch-to-finish pass on each supported device before resubmit. Editor + Windows + Android player builds are clean; on-device pass is the developer's. |
+| 2.1 bugs/crashes — test on physical devices | A device pass since submission fixed one issue (in-game Instructions panel Close button, commit `3a5125b`). Editor tests + Windows + Android player builds are clean. Do a fresh launch-to-finish pass on the new build before resubmitting. |
 | 2.1 accessing the app — demo credentials | None needed; no login. Stated in the reply. |
 | 2.3.3 screenshots — show the app in use | Swap to gameplay-first; drop `01_workshop` (menu). See APP_STORE_LISTING.md §09. |
 | 3.1.1 in-app purchase | None. App is free ($0.00), no subscription. |

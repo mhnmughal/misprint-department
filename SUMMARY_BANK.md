@@ -616,9 +616,13 @@ artifact `9c25ae5b-adc7-4403-9b95-7d60862da87d` and in
 - Price: **Free ($0.00)**, no in-app purchase (set in App Store Connect).
 - Still outstanding from the developer:
   1. Publish the Support page + enter its URL.
-  2. Build/sign/validate the iOS binary on a Mac.
-  3. Record the app running on a **physical iPhone (iOS 26.6.1)** and reply
-     to Apple with everything in `APP_REVIEW_RESPONSE.md`.
+  2. Set Price = Free in App Store Connect.
+  3. Build a **fresh iOS binary from latest `main`** on a Mac (the build in
+     App Store Connect predates the opaque-panel, workshop-label and
+     Instructions-Close-button fixes), validate in Xcode, upload.
+  4. Record *that* build on a **physical iPhone (iOS 26.6.1)**, swap the
+     screenshots (gameplay first, no `01_workshop`), and reply to Apple with
+     everything in `APP_REVIEW_RESPONSE.md`.
 
 ## NOTE FOR NEXT AGENT
 The Unity MCP bridge (`com.anklebreaker.unity-mcp`) has been added and removed
