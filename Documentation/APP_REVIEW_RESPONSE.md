@@ -6,7 +6,7 @@ original submission fixed one issue (the in-game Instructions panel Close
 button) and tightened the menu panels, so **upload a fresh build from the
 latest `main` and record that build** — see below.
 
-Paste the reply below into the Resolution Center (~2,700 chars, under the
+Paste the reply below into the Resolution Center (~3,950 chars, under the
 4,000 limit) and paste the condensed version into **App Review Information →
 Notes** so it carries to future submissions.
 
@@ -53,68 +53,108 @@ do not upload `01_workshop`).
 
 ## Full reply — paste into the Resolution Center message
 
-Under 4000 characters. Facts only, no preamble.
+Letter format, ~3,950 characters (under the 4,000 Resolution Center limit).
 
 ```
-Misprint Department is a free, single-player, offline logic puzzle game.
-No accounts, no in-app purchase, no ads, no user-generated content, no
-network connections.
+Hello App Review Team,
 
-The build with this reply is our latest, validated in Xcode. Since the
-first submission we did a full pass on physical devices and fixed one
-issue: the Close button on the in-game Instructions panel now dismisses
-the panel correctly.
+Thank you for your message. The requested information is below.
 
-1. SCREEN RECORDING
-Attached: a recording of this build from a physical iPhone on iOS 26.6.1,
-starting from launch. It shows the workshop screen, the guided Training
-Job to completion, Job 001 solved with the correction tools and the Run
-Proof lever, and the Settings screen.
-- Account registration / login / deletion: none. No account is created.
-- User-generated content: none. No creation, sharing, reporting, blocking.
-- Paid content or features: none. All content ships in the app.
+1. PHYSICAL DEVICE SCREEN RECORDING
 
-2. PURPOSE AND AUDIENCE
-A deduction puzzle. A printer outputs a route as instruction tiles (Move,
-Turn Left, Turn Right, Wait, Reverse, Jump) with one known printing defect
-per job. The player reads the defect, corrects the tiles with a limited
-set of bench tools (Rotate, Replace, Swap, Cross Out, Shift, Restore),
-then runs the corrected route to the target. Jobs are scored Verified /
-Clean Proof / Master Proof.
-Audience: logic and programming-puzzle players; anyone wanting a calm
-offline puzzle game. Rated 4+.
+A screen recording captured on a physical iPhone (iOS 26.6.1), from
+launch, showing the typical user flow:
 
-3. SETUP AND ACCESS
-No setup, login, credentials, or sample files. Launch and play.
-- Opens to the workshop screen; tap Start.
-- First launch gives the guided Training Job.
-- Job Files lists all 12 jobs; they unlock in order. Any job can be opened
-  directly from Job Files for review.
-- In a job: tap a tool in the tray, tap the misprinted command, then pull
-  the Run Proof lever.
-- Settings (music, sound, haptics, reset progress) is on the workshop
-  screen.
-- Progress saves to one local file on the device.
+- The main workshop screen
+- Completing the guided Training Job
+- Solving Job 001 and Job 002
+- Selecting a correction tool and correcting a misprinted command
+- Pulling the RUN PROOF lever, with the route reaching the destination
+  (PROOF APPROVED)
+- Opening Job Files, the Machine Manual, and Settings
 
-4. EXTERNAL SERVICES
-None. No backend or API, no data providers, no authentication, no payment
-processor, no analytics, crash reporting, advertising, or attribution SDK,
-no AI service, no cloud storage or sync. No network connections. Built
-with the Unity engine; all content is bundled. The only device capability
-used is optional haptics, toggleable in Settings.
+The app has no account registration, login, account deletion,
+user-generated content, paid content, subscriptions, or in-app purchases,
+so those flows do not appear.
+
+2. APP PURPOSE AND TARGET AUDIENCE
+
+Misprint Department is a single player 2.5D logic puzzle game. A mechanical
+printer prints a route as instruction tiles (Move, Turn Left, Turn Right,
+Wait, Reverse, Jump). Each job the plate has one known printing defect
+(for example tiles swapped or shifted). The player reads the defect,
+corrects the tiles with a limited set of bench tools (Rotate, Replace,
+Swap, Cross Out, Shift, Restore), then pulls a lever to run the corrected
+route to the destination. Each job is scored Verified, Clean Proof, or
+Master Proof.
+
+It is a calm, deterministic puzzle: no time pressure, no reflex
+challenges, no randomness, no advertising, no internet requirement.
+
+Target audience: players who enjoy logic and puzzle games. Rated 4+, no
+objectionable content.
+
+3. SETUP AND ACCESSING THE MAIN FEATURES
+
+No account, credentials, configuration, or sample files. Works offline
+from first launch.
+
+1. Launch the app.
+2. Tap "START TRAINING" for the guided Training Job.
+3. Tap a correction tool, then tap the misprinted command and choose the
+   fix.
+4. Tap the RUN PROOF lever to run the corrected route.
+5. Reach the destination within the correction budget to complete the job.
+
+The Training Job unlocks Job 001; each completed job unlocks the next.
+There are 13 jobs total (Training Job plus 12). Any unlocked job can be
+opened directly from Job Files.
+
+Other menus: JOB FILES (job select), MACHINE MANUAL (command and tool
+explanations), SETTINGS (music, sound, interface volume, haptics, reset
+progress). No demo credentials or reviewer access are required.
+
+4. EXTERNAL SERVICES, TOOLS, OR PLATFORMS
+
+None. The app has no backend, no external API or data provider, no
+authentication service, no payment processor, no in-app purchases, no
+advertising, no AI services, and no analytics, telemetry, attribution, or
+crash-reporting SDK (Unity Analytics and diagnostics are disabled). It
+makes no network connections and works fully offline.
+
+Built with the Unity game engine; all levels, art, audio, and text are
+bundled locally.
 
 5. REGIONAL DIFFERENCES
-None. Identical behavior in every region. No region-specific content, no
-geo-gating, no location or locale logic.
 
-6. REGULATED INDUSTRY / PROTECTED MATERIAL
-Not applicable. Original game, not in any regulated industry. All code,
-art, level design, and audio are original. The only third-party asset is
-the Liberation Sans typeface under the SIL Open Font License (commercial
-use permitted). No licenses or authorizations required.
+None. Misprint Department functions consistently in every region. There
+are no regional feature flags, no geographically varied content, no
+region-specific functionality, and no location services.
 
-The app is free with no monetization and is for the general public, not an
-enterprise or internal app. No demo account is needed.
+6. REGULATED SERVICES OR PROTECTED THIRD-PARTY MATERIAL
+
+Not applicable. It is a puzzle game and does not operate in a regulated
+industry or provide regulated services.
+
+The content is our original work: level designs, the route simulation,
+the audio (synthesized in-code, stored as WAV), artwork, icon, and text.
+There is no third-party music, characters, trademarks, or branded content.
+The only third-party asset is the typeface Liberation Sans, under the SIL
+Open Font License, which permits commercial use. No additional
+documentation or authorization is required.
+
+ADDITIONAL INFORMATION
+
+The app is free, with no monetization and no hidden or reviewer-only
+features. The build with this reply was rebuilt from our latest source and
+tested on a physical iPhone running iOS 26.6.1; a device pass since the
+first submission fixed the Close button on the in-game instructions
+screen.
+
+Thank you for reviewing Misprint Department.
+
+Best regards,
+Misprint Department Team
 ```
 
 ---
