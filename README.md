@@ -63,6 +63,9 @@ Interactive version with per-field copy buttons:
 App Review Guideline 5.6 (Developer Code of Conduct) and 5.1.1 (Privacy)
 verification, plus the macOS/Xcode build-and-validate steps, are in
 [`Documentation/APP_REVIEW_COMPLIANCE.md`](Documentation/APP_REVIEW_COMPLIANCE.md).
+The reply to Apple's Guideline 2.1 "Information Needed" request (new-account
+info) is in
+[`Documentation/APP_REVIEW_RESPONSE.md`](Documentation/APP_REVIEW_RESPONSE.md).
 Privacy policy: <https://sites.google.com/view/misprint-department/home>
 
 ## Audio and typography

@@ -272,19 +272,24 @@ Landscape. Actual gameplay only, no device frames with fake status bars, no
 | `Screenshots/iphone-6.9/` | 2868 x 1320 | iPhone 6.9-inch (required) |
 | `Screenshots/ipad-13/` | 2732 x 2048 | iPad 13-inch (needed since the build targets iPad) |
 
-Six shots per folder, same names. Recommended upload order, strongest first:
+Guideline 2.3.3: screenshots must show the app **in use**, not the menu /
+title / splash. Apple's 2026-09-09 review note called this out, so upload the
+gameplay shots and **skip `01_workshop`** (it reads as a home screen).
+
+Upload order (5 shots, gameplay first):
 
 1. `03_inspection.png` — a job mid-inspection: printed route strip, the
    TODAY'S DEFECT card, the correction tray, the RUN PROOF lever.
-2. `05_proof_approved.png` — the result card with the rotated MASTER PROOF
-   stamp, corrections-used vs par, and the batch sign-off line.
-3. `02_job_files.png` — the job-ticket rack: 6 batches, PASS stamps and
-   earned ratings.
-4. `06_settings.png` — the maintenance card: music / sound / interface
-   sliders, haptics, reset progress.
-5. `04_proof_running.png` — the corrected route executing, a command
+2. `04_proof_running.png` — the corrected route executing, a command
    highlighted, the carriage part way to the target.
-6. `01_workshop.png` — the proof bench and the CONTINUE INSPECTION control.
+3. `05_proof_approved.png` — the result card with the rotated MASTER PROOF
+   stamp, corrections-used vs par, and the batch sign-off line.
+4. `02_job_files.png` — the job-ticket rack: 6 batches, PASS stamps and
+   earned ratings.
+5. `06_settings.png` — the maintenance card: music / sound / interface
+   sliders, haptics, reset progress.
+
+Do **not** upload `01_workshop.png`.
 
 To regenerate: re-add `com.unity.recorder`, recreate the
 `Assets/Scripts/Editor/Store/` tool (see MCP-0028 / MCP-0030 in SUMMARY_BANK),

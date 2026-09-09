@@ -583,10 +583,19 @@ artifact `9c25ae5b-adc7-4403-9b95-7d60862da87d` and in
   `Recordings/MisprintDepartment_ReviewerDemo_001.mp4` (2868x1320, H.264 +
   audio, 2:02; gitignored, delivered to the user). The one-shot recording
   tool that produced it was removed again in MCP-0023.
-- Screenshot set: captured 2026-09-08 (MCP-0028) — 6 PNGs at 2868x1320 in
-  `Screenshots/` (gitignored, delivered to the user).
-- Still outstanding from the developer: a Support URL and the price decision
-  (no in-app purchase either way).
+- Screenshot set: iPhone 6.9" (2868x1320) + iPad 13" (2732x2048), 6 shots
+  each in `Screenshots/<device>/` (gitignored, delivered). Upload gameplay
+  shots first and skip `01_workshop` (2.3.3 — Apple flagged menu/title shots).
+- **2026-09-09: Apple review "Guideline 2.1 — Information Needed"** (standard
+  new-account info request, not a defect). Full reply + Notes-field text +
+  physical-device screen-recording steps in
+  `Documentation/APP_REVIEW_RESPONSE.md`.
+- Still outstanding from the developer:
+  1. Publish the Support page + enter its URL.
+  2. Set the price.
+  3. Build/sign/validate the iOS binary on a Mac.
+  4. Record the app running on a **physical device** and reply to Apple with
+     everything in `APP_REVIEW_RESPONSE.md`.
 
 ## NOTE FOR NEXT AGENT
 The Unity MCP bridge (`com.anklebreaker.unity-mcp`) has been added and removed
