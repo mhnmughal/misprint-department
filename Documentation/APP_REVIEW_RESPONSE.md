@@ -13,27 +13,34 @@ content, no external services.
 
 ## What you must still produce yourself
 
-**A screen recording captured on a physical device.** The editor-recorded
-reviewer video in `Recordings/` does **not** satisfy this — Apple requires
-real hardware, latest OS, starting from launch.
+**A screen recording captured on a physical iPhone (iOS 26.6.1).** The
+editor-recorded reviewer video in `Recordings/` does **not** satisfy this —
+Apple requires real hardware, current OS, starting from launch.
 
-1. Install the build on an iPhone (or iPad) via TestFlight — the build is
-   already in App Store Connect, so add yourself as an internal tester and
-   install from TestFlight.
-2. On the device: Settings → Control Center → add **Screen Recording**.
-3. Force-quit the app. Start the screen recording. Launch Misprint Department
-   from the home screen.
-4. Show, in order (about 2–3 minutes):
-   - the splash, then the main workshop screen
-   - tap START INSPECTION → play the **Training Job** to the end (it is
-     guided, so just follow the prompts)
-   - back at the workshop, open **Job Files**, open **Job 001**, solve it:
-     pick a correction tool, tap the wrong command, then pull the **RUN
-     PROOF** lever; show the PROOF APPROVED result and rating
-   - open **Settings** from the workshop, move the Music / Sound sliders and
-     toggle Haptics
-5. Stop the recording. Trim it. Upload it in the App Store Connect reply and
-   attach it in App Review Information.
+1. Confirm the iPhone is on the latest public iOS (Settings → General →
+   Software Update). 26.6.1 is fine if it is current.
+2. Install the build via TestFlight — the build is already in App Store
+   Connect, so add yourself as an internal tester and install from TestFlight.
+3. On the device: Settings → Control Center → add **Screen Recording**.
+4. Force-quit the app. Start the screen recording, wait 1 second, then launch
+   Misprint Department from the home screen.
+5. Do this in one take (about 2–3 minutes, no rush — pauses are fine):
+   - let the splash play, land on the workshop screen
+   - tap **START TRAINING** → play the **Training Job** end to end; it is
+     guided, so follow each callout (take Replace, tap the wrong turn, pick
+     the right one, pull RUN PROOF)
+   - on the result screen tap **JOB FILES** (or the back control) to reach
+     the workshop, then open **Job Files**
+   - open **Job 001**, solve it: tap a correction tool, tap the misprinted
+     command, apply the fix, pull the **RUN PROOF** lever, let the route run,
+     show the **PROOF APPROVED** card and its rating
+   - go back to the workshop, open **Settings**, drag the Music and Sound
+     sliders, toggle **Haptics** on/off
+   - (optional) tap a locked job in Job Files to show it does nothing without
+     being unlocked — demonstrates the progression is real
+6. Stop the recording (tap the red status bar → Stop). Trim the dead ends in
+   Photos. Upload it in the App Store Connect reply **and** attach it under
+   App Review Information for future submissions.
 
 Also before resubmitting: run the build on each supported device once (2.1
 bugs/crashes) and swap the App Store screenshots so the first ones are
@@ -51,12 +58,12 @@ no user-generated content, and makes no network connections. Answers to
 each point:
 
 1. SCREEN RECORDING
-A screen recording captured on a physical iPhone running the current iOS
-version is attached. It begins by launching the app and shows the typical
-flow: the workshop screen, the guided Training Job played to completion,
-Job 001 solved using the correction tools and the Run Proof lever with its
-result screen, and the Settings screen (music, sound, interface, haptics,
-reset progress).
+A screen recording captured on a physical iPhone running iOS 26.6.1 is
+attached. It begins by launching the app and shows the typical flow: the
+workshop screen, the guided Training Job played to completion, Job 001
+solved using the correction tools and the Run Proof lever with its result
+screen, and the Settings screen (music, sound, interface, haptics, reset
+progress).
 - Account registration / login / deletion: none. The app never creates an
   account, so account deletion does not apply.
 - User-generated content: none. There is no content creation, sharing,
