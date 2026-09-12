@@ -245,6 +245,44 @@ Validate all levels: menu `Misprint/Validate All Levels` (7 → Training + Ch1).
 
 ## MCP CHANGE LOG
 
+### MCP-0032
+- Date: 2026-09-12
+- Agent: Claude (Sonnet 5), session "training tutorial GOT IT fix"
+- Scene/Asset: `Assets/Scripts/Game/UI/TutorialLayer.cs`,
+  `Assets/Scripts/Editor/Build/GameplaySceneBuilder.cs`,
+  `Assets/Scenes/Gameplay.unity` (rebuilt).
+- Change: **Fixed the Training Job "GOT IT" tutorial callout becoming stuck
+  and looking unresponsive** — Apple's iPad review (Guideline 2.1(a) —
+  Performance — App Completeness, submission `8d19849b`, iPad Air 11" M4,
+  iPadOS 27.0) reported exactly this on Job 000, screenshot showed the
+  step-0 "Welcome" bubble still up alongside an open REPLACE WITH popup and
+  1 correction already used. Root cause: `TutorialLayer` only blocked
+  raycasts over its own small 660x190 bubble rect on info steps — nothing
+  stopped the player from ignoring it and going straight to a tool/token
+  underneath. `_step` only advances when the matching action fires
+  (`OnToolSelected`/`ApplyOp` check `_step == expectedIndex`), so once the
+  player skipped ahead the callout was permanently stuck on step 0's text
+  with a GOT IT button that no longer did anything relevant on screen.
+  Fix: added an invisible full-screen `Image` (`ScreenBlock`) as an earlier
+  sibling than the bubble, so the bubble always renders/raycasts on top of
+  it; `raycastTarget` is true only on info steps, eating every other tap
+  until GOT IT is pressed — this is what the class's own doc comment always
+  claimed happened but never actually implemented.
+- Reason: user bug report + Apple Resolution Center screenshot.
+- Validation: reproduced live via the MCP bridge before the fix (selected
+  Replace tool + tapped a token via reflection while `_step` was still 0 —
+  matched the report: step stuck at 0, popup open, 1 correction used).
+  After the fix, `screenBlock` field confirmed wired on the rebuilt scene;
+  0 compile errors. Live click-through re-verification was inconclusive
+  (the Unity window briefly became the OS foreground window mid-test and
+  something/someone advanced the tutorial in real time between calls,
+  contaminating that specific check) but the wiring + sibling-order logic
+  is straightforward and was confirmed by direct field inspection. MCP
+  re-added for the fix, removed again after; manifest back to the
+  committed 32-dep set.
+- Result: PASS (logic + wiring confirmed; recommend one manual tap-through
+  of the Training Job on the next device build before resubmitting).
+
 ### MCP-0031
 - Date: 2026-09-09
 - Agent: Claude (Sonnet 5), session "app review + pause-menu fix"

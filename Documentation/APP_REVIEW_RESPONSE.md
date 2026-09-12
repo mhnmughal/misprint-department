@@ -1,4 +1,37 @@
-# APP REVIEW RESPONSE — Guideline 2.1, Information Needed
+# APP REVIEW RESPONSE
+
+## 2026-09-11 — Guideline 2.1(a), Performance, App Completeness (bug)
+
+A second rejection, on the resubmission: iPad Air 11" (M4), iPadOS 27.0
+reported the Training Job's **"GOT IT" tutorial button unresponsive**
+(screenshot showed Job 000, step-0 "Welcome" bubble still up, a REPLACE WITH
+popup open, 1 correction already used). This is a real bug — **fixed** in
+commit on 2026-09-12 (see `SUMMARY_BANK.md` MCP-0032 for the root cause: the
+tutorial callout only blocked taps on its own small bubble, so a player
+could skip past it into the game underneath and strand it on step 0).
+
+This kind of message has no information request — Apple's own "Next Steps"
+just says to fix it and resubmit. **No Resolution Center reply is required.**
+Do this instead:
+
+1. Build fresh from `main` (this commit is already newer than what shipped)
+   on the Mac, validate, upload as a new build.
+2. On a physical device, manually play the Training Job at least once,
+   including tapping GOT IT with a tool already selected/a popup open, to
+   confirm the fix before resubmitting — this is exactly the class of bug
+   Apple is now watching for on this app, so don't skip the manual pass.
+3. Resubmit for review. If App Store Connect gives you a free-text box on
+   the resubmission (not all bug-only rejections do), a one-line note like
+   below is enough — no need for the long letter:
+
+   > Fixed: the Training Job's GOT IT tutorial callout could be bypassed by
+   > interacting with a tool/token underneath it, leaving it stuck and
+   > appearing unresponsive. It now blocks the rest of the screen until
+   > dismissed. Verified on a physical device.
+
+---
+
+## 2026-09-09 — Guideline 2.1, Information Needed (first submission)
 
 Apple's 2026-09-09 note is the **standard new-account information request**, not
 a rejection for a defect. The app is complete; a device QA pass since the
