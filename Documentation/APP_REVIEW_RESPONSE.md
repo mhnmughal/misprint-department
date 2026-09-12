@@ -47,12 +47,12 @@ Notes** so it carries to future submissions.
 
 ## What you must still produce yourself
 
-**A screen recording captured on a physical iPhone (iOS 26.6.1).** The
+**A screen recording captured on a physical iPhone (iOS 26.6.2).** The
 editor-recorded reviewer video in `Recordings/` does **not** satisfy this —
 Apple requires real hardware, current OS, starting from launch.
 
 1. Confirm the iPhone is on the latest public iOS (Settings → General →
-   Software Update). 26.6.1 is fine if it is current.
+   Software Update). 26.6.2 is fine if it is current.
 2. Build a **fresh binary from the latest `main`** on the Mac (it has fixes
    the build in App Store Connect does not), validate it in Xcode, upload it,
    and install *that* build on the iPhone via TestFlight. Record this build.
@@ -95,7 +95,7 @@ Thank you for your message. The requested information is below.
 
 1. PHYSICAL DEVICE SCREEN RECORDING
 
-A screen recording captured on a physical iPhone (iOS 26.6.1), from
+A screen recording captured on a physical iPhone (iOS 26.6.2), from
 launch, showing the typical user flow:
 
 - The main workshop screen
@@ -180,7 +180,7 @@ ADDITIONAL INFORMATION
 
 The app is free, with no monetization and no hidden or reviewer-only
 features. The build with this reply was rebuilt from our latest source and
-tested on a physical iPhone running iOS 26.6.1; a device pass since the
+tested on a physical iPhone running iOS 26.6.2; a device pass since the
 first submission fixed the Close button on the in-game instructions
 screen.
 
