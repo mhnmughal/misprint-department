@@ -18,6 +18,8 @@ namespace MisprintDepartment.Game.UI
         [SerializeField] TMP_Text text;
         [SerializeField] Button continueButton;
         [SerializeField] TMP_Text continueLabel;
+        [Tooltip("Invisible full-screen raycast catcher BEHIND the bubble. On info steps it eats every tap outside the bubble so the player must hit GOT IT before reaching tools/tokens underneath; off on action steps.")]
+        [SerializeField] Image screenBlock;
 
         [Header("Anchors (authored in scene)")]
         [SerializeField] RectTransform anchorStrip;
@@ -45,6 +47,7 @@ namespace MisprintDepartment.Game.UI
         {
             if (continueButton != null) continueButton.onClick.AddListener(TryTapAdvance);
             if (group != null) { group.alpha = 0f; group.blocksRaycasts = false; }
+            if (screenBlock != null) screenBlock.raycastTarget = false;
         }
 
         public void Begin()
@@ -68,6 +71,7 @@ namespace MisprintDepartment.Game.UI
         {
             _step = Script.Length;
             if (group != null) { group.alpha = 0f; group.blocksRaycasts = false; }
+            if (screenBlock != null) screenBlock.raycastTarget = false;
         }
 
         void Render()
@@ -93,6 +97,11 @@ namespace MisprintDepartment.Game.UI
                 group.interactable = true;
                 group.blocksRaycasts = s.info; // action steps: let taps reach the game
             }
+            // info steps: also eat every OTHER tap on screen so GOT IT can't be skipped
+            // by tapping a tool/token behind the bubble (root cause of a dead-looking
+            // GOT IT — the player had already wandered off into gameplay and the bubble
+            // was just stuck on step 0 in the background).
+            if (screenBlock != null) screenBlock.raycastTarget = s.info;
         }
     }
 }

@@ -319,9 +319,14 @@ namespace MisprintDepartment.Editor.Build
         {
             var go = UiKit.Rect("TutorialLayer", safe);
             UiKit.Stretch(go);
-            var rootCg = go.gameObject.AddComponent<CanvasGroup>();
-            rootCg.blocksRaycasts = false; // the bubble carries its own blocking group
             var tut = go.gameObject.AddComponent<TutorialLayer>();
+
+            // Invisible full-screen catcher, added before the bubble so the bubble
+            // (a later sibling) always renders and raycasts on top of it. Only
+            // raycastTarget=true on info steps — swallows taps meant for tools/tokens
+            // underneath so GOT IT can't be silently skipped.
+            var screenBlock = UiKit.Image("ScreenBlock", go, Color.clear, false);
+            UiKit.Stretch((RectTransform)screenBlock.transform);
 
             var bubble = UiKit.Rect("Bubble", go);
             bubble.anchorMin = new Vector2(0.5f, 0.5f); bubble.anchorMax = new Vector2(0.5f, 0.5f);
@@ -354,6 +359,7 @@ namespace MisprintDepartment.Editor.Build
             var aBudget = MakeAnchor("AnchorBudget", go, new Vector2(0.60f, 0.82f));
 
             W.Wire(tut, "group", bubbleCg);
+            W.Wire(tut, "screenBlock", screenBlock);
             W.Wire(tut, "bubble", bubble);
             W.Wire(tut, "text", bText);
             W.Wire(tut, "continueButton", cont);
