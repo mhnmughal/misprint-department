@@ -347,7 +347,11 @@ namespace MisprintDepartment.Editor.Build
             btRt.anchorMin = new Vector2(0, 0.28f); btRt.anchorMax = new Vector2(1, 1);
             btRt.offsetMin = new Vector2(24, 0); btRt.offsetMax = new Vector2(-24, -8);
 
-            var cont = UiKit.Button("ContinueButton", bubble, "GOT IT", UiKit.Ink, UiKit.Paper, 18, out var contLabel);
+            // CharcoalUp (not Ink) — matches every other button's bg. Ink is
+            // near-black, so the standard 0.82x press-dim was only a ~6-unit
+            // shift on it (invisible); CharcoalUp gives the same tactile dim
+            // every other button in the game has.
+            var cont = UiKit.Button("ContinueButton", bubble, "GOT IT", UiKit.CharcoalUp, UiKit.Paper, 18, out var contLabel);
             var cRt = (RectTransform)cont.transform;
             cRt.anchorMin = new Vector2(0.5f, 0f); cRt.anchorMax = new Vector2(0.5f, 0f); cRt.pivot = new Vector2(0.5f, 0f);
             UiKit.Size(cRt, 220, 46); UiKit.Pos(cRt, 0, 14);
