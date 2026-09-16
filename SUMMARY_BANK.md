@@ -267,18 +267,20 @@ Validate all levels: menu `Misprint/Validate All Levels` (7 → Training + Ch1).
   portrait flags stay `false` — game is still landscape-only by design,
   it now just follows the device between the two landscape orientations.
 - Reason: Apple Guideline 4 rejection.
-- Validation: MCP bridge did not come back online this session (re-added
-  to manifest, never resolved after 2+ min, reverted). `ProjectSettings.asset`
-  hand-edited to match (`defaultScreenOrientation: 3` -> `4`, confirmed
-  against Unity's `UIOrientation` enum ordering: 0 Portrait / 1
-  PortraitUpsideDown / 2 LandscapeRight / 3 LandscapeLeft / 4 AutoRotation),
-  so code and serialized settings agree without a live editor. **Not yet
-  confirmed against an actual generated Info.plist** — do that by opening
-  the project in Unity once (which will also pick up the code change) and
-  regenerating `Build/iOS` before the next resubmission; it should now
-  declare both `UIInterfaceOrientationLandscapeLeft` and `...Right`.
-- Result: PASS at the source/settings level; Info.plist re-verification
-  still owed before resubmitting — see `APP_REVIEW_RESPONSE.md`.
+- Validation: MCP bridge was slow to reconnect this session (re-added to
+  manifest, didn't resolve after 2+ min, reverted; `ProjectSettings.asset`
+  hand-edited in the meantime to `defaultScreenOrientation: 3` -> `4` so
+  code and settings agreed without a live editor). Re-added again and it
+  connected ~10 min later. **Confirmed live**: ran
+  `MisprintBuild.ConfigurePlayerSettings()` via `unity_execute_code` (read
+  back `defaultInterfaceOrientation: AutoRotation`, both landscape flags
+  true, both portrait flags false), then `unity_build` to regenerate
+  `Build/iOS` (0 errors) and grepped the actual output —
+  `Build/iOS/Info.plist` → `UISupportedInterfaceOrientations` now lists
+  both `UIInterfaceOrientationLandscapeRight` and `...LandscapeLeft` (was
+  `LandscapeRight` only before the fix). MCP removed again after; `git
+  diff --quiet HEAD -- Packages/` confirms the clean 32-dep baseline.
+- Result: PASS, fully confirmed against the actual Xcode project output.
 
 ### MCP-0032
 - Date: 2026-09-12

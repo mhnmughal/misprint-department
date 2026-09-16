@@ -23,23 +23,21 @@ Fixed 2026-09-16: `defaultInterfaceOrientation` changed to
 portrait flags `false`. The game is still landscape-only by design
 (nothing changes there), it now just rotates between landscape-left and
 landscape-right with the device instead of locking to one side.
-`ProjectSettings.asset` was hand-edited to match since the Unity MCP
-bridge did not come back online this session — **opening the project in
-Unity once and regenerating the iOS Xcode project is still owed**, to
-confirm Info.plist now lists both `UIInterfaceOrientationLandscapeLeft`
-and `...Right` before you build for the next submission.
+**Confirmed live** by regenerating the iOS Xcode project and reading the
+actual output: `Build/iOS/Info.plist` now lists both
+`UIInterfaceOrientationLandscapeRight` and `UIInterfaceOrientationLandscapeLeft`
+in `UISupportedInterfaceOrientations` (was `LandscapeRight` only before).
 
 This is a bug fix, not an information request. **No Resolution Center
 reply is required.** Do this instead:
 
-1. Open the project in Unity once (picks up the fix), regenerate the iOS
-   Xcode project, and confirm Info.plist declares both landscape
-   orientations, not just one.
-2. Build fresh from `main` on the Mac, validate, upload as a new build.
-3. On a physical iPad, confirm the app follows the device when rotated
+1. Build fresh from `main` on the Mac, validate, upload as a new build
+   (the fix and its Info.plist output are already confirmed, no need to
+   re-check that part).
+2. On a physical iPad, confirm the app follows the device when rotated
    180 degrees between the two landscape orientations (this is the exact
    check Apple did to find it).
-4. Resubmit. Optional one-line note if ASC gives you a text box:
+3. Resubmit. Optional one-line note if ASC gives you a text box:
 
    > Fixed: the app was locked to a single landscape orientation and did
    > not rotate with the device. It now supports both landscape
