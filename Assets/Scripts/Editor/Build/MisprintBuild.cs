@@ -85,7 +85,13 @@ namespace MisprintDepartment.Editor.Build
             PlayerSettings.productName = "Misprint Department";
             PlayerSettings.companyName = "Misprint Department team";
 
-            PlayerSettings.defaultInterfaceOrientation = UIOrientation.LandscapeLeft;
+            // AutoRotation (not a fixed LandscapeLeft) so the allowed-* flags below
+            // actually apply — Unity only consults them when the default orientation
+            // is AutoRotation. A fixed orientation locks the app to one landscape
+            // side and never rotates 180 deg with the device, which is exactly what
+            // Apple's Guideline 4 rejection (submission 8d19849b, build 3) flagged:
+            // "does not use expected iOS gestures such as screen orientation."
+            PlayerSettings.defaultInterfaceOrientation = UIOrientation.AutoRotation;
             PlayerSettings.allowedAutorotateToLandscapeLeft = true;
             PlayerSettings.allowedAutorotateToLandscapeRight = true;
             PlayerSettings.allowedAutorotateToPortrait = false;

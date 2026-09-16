@@ -22,7 +22,7 @@ also succeeds, which is strong evidence the iOS compile will too once on a Mac.
 | `CFBundleIdentifier` | `com.misprintdepartmentteam.misprintdepartment` |
 | `CFBundleShortVersionString` / `CFBundleVersion` | `1.0` / `1` |
 | `CFBundleDisplayName` | `Misprint Department` |
-| Orientation | `UIInterfaceOrientationLandscapeRight` only; `UIRequiresFullScreen = true` |
+| Orientation | `UIInterfaceOrientationLandscapeRight` only; `UIRequiresFullScreen = true` — **this was the exact cause of the 2026-09-15 Guideline 4 rejection** (app didn't rotate with the device); fixed 2026-09-16, see `APP_REVIEW_RESPONSE.md`. Re-generate the Xcode project to confirm both landscape orientations are now declared before the next submission. |
 | Deployment target | iOS 15.0; `TARGETED_DEVICE_FAMILY = 1,2` |
 | `NS*UsageDescription` keys | **none** (no camera/mic/location/contacts/photos/Bluetooth/motion/tracking prompts) |
 | `NSAppTransportSecurity`, `NSAllowsArbitraryLoads` | **not present** (no networking) |

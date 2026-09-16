@@ -1,5 +1,54 @@
 # APP REVIEW RESPONSE
 
+## 2026-09-15: Guideline 4, Design (build 3)
+
+Third rejection, on build (3): iPad Air 11" (M3), iPadOS 27. Apple's
+description: "the app does not use expected iOS gestures such as screen
+orientation." No screenshot this time; the text alone is enough to find it.
+
+Root cause, confirmed in `Assets/Scripts/Editor/Build/MisprintBuild.cs`:
+`ConfigurePlayerSettings()` set `PlayerSettings.defaultInterfaceOrientation
+= UIOrientation.LandscapeLeft`, a **fixed** single orientation. The two
+`allowedAutorotateToLandscapeLeft/Right = true` lines right below it did
+nothing, because Unity only reads those flags when the default orientation
+is `AutoRotation`. Result: the generated Info.plist declared only
+`UIInterfaceOrientationLandscapeRight` (confirmed in
+`APP_REVIEW_COMPLIANCE.md`'s own Info.plist inspection from an earlier
+session), so physically rotating an iPad 180 degrees never rotated the
+app. That is the exact iOS gesture (device rotation between the two
+landscape orientations) Apple's message is pointing at.
+
+Fixed 2026-09-16: `defaultInterfaceOrientation` changed to
+`UIOrientation.AutoRotation`, keeping both landscape flags `true` and both
+portrait flags `false`. The game is still landscape-only by design
+(nothing changes there), it now just rotates between landscape-left and
+landscape-right with the device instead of locking to one side.
+`ProjectSettings.asset` was hand-edited to match since the Unity MCP
+bridge did not come back online this session — **opening the project in
+Unity once and regenerating the iOS Xcode project is still owed**, to
+confirm Info.plist now lists both `UIInterfaceOrientationLandscapeLeft`
+and `...Right` before you build for the next submission.
+
+This is a bug fix, not an information request. **No Resolution Center
+reply is required.** Do this instead:
+
+1. Open the project in Unity once (picks up the fix), regenerate the iOS
+   Xcode project, and confirm Info.plist declares both landscape
+   orientations, not just one.
+2. Build fresh from `main` on the Mac, validate, upload as a new build.
+3. On a physical iPad, confirm the app follows the device when rotated
+   180 degrees between the two landscape orientations (this is the exact
+   check Apple did to find it).
+4. Resubmit. Optional one-line note if ASC gives you a text box:
+
+   > Fixed: the app was locked to a single landscape orientation and did
+   > not rotate with the device. It now supports both landscape
+   > orientations and follows device rotation, matching standard iOS
+   > behavior. Portrait remains unsupported by design (a landscape-only
+   > puzzle game).
+
+---
+
 ## 2026-09-11: Guideline 2.1(a), Performance, App Completeness (bug)
 
 A second rejection, on the resubmission: iPad Air 11" (M4), iPadOS 27.0

@@ -245,6 +245,41 @@ Validate all levels: menu `Misprint/Validate All Levels` (7 → Training + Ch1).
 
 ## MCP CHANGE LOG
 
+### MCP-0033
+- Date: 2026-09-16
+- Agent: Claude (Sonnet 5), session "orientation fix"
+- Scene/Asset: `Assets/Scripts/Editor/Build/MisprintBuild.cs`
+  (`ConfigurePlayerSettings`).
+- Change: **Fixed the app being locked to a single landscape orientation**
+  — Apple's 3rd rejection (Guideline 4, Design, submission `8d19849b`
+  build 3, iPad Air 11" M3, iPadOS 27) said "the app does not use expected
+  iOS gestures such as screen orientation." Root cause:
+  `PlayerSettings.defaultInterfaceOrientation` was set to the **fixed**
+  value `UIOrientation.LandscapeLeft`, not `AutoRotation`. The two
+  `allowedAutorotateToLandscapeLeft/Right = true` lines right below it did
+  nothing, since Unity only honors those flags when the default
+  orientation is `AutoRotation` — with a fixed orientation the generated
+  Info.plist only ever declares one `UIInterfaceOrientationLandscape*` key
+  (confirmed against `APP_REVIEW_COMPLIANCE.md`'s earlier Info.plist
+  inspection: `LandscapeRight` only), so the app never rotated when the
+  iPad was physically turned 180 degrees. Fix: `defaultInterfaceOrientation
+  = UIOrientation.AutoRotation`, both landscape flags stay `true`, both
+  portrait flags stay `false` — game is still landscape-only by design,
+  it now just follows the device between the two landscape orientations.
+- Reason: Apple Guideline 4 rejection.
+- Validation: MCP bridge did not come back online this session (re-added
+  to manifest, never resolved after 2+ min, reverted). `ProjectSettings.asset`
+  hand-edited to match (`defaultScreenOrientation: 3` -> `4`, confirmed
+  against Unity's `UIOrientation` enum ordering: 0 Portrait / 1
+  PortraitUpsideDown / 2 LandscapeRight / 3 LandscapeLeft / 4 AutoRotation),
+  so code and serialized settings agree without a live editor. **Not yet
+  confirmed against an actual generated Info.plist** — do that by opening
+  the project in Unity once (which will also pick up the code change) and
+  regenerating `Build/iOS` before the next resubmission; it should now
+  declare both `UIInterfaceOrientationLandscapeLeft` and `...Right`.
+- Result: PASS at the source/settings level; Info.plist re-verification
+  still owed before resubmitting — see `APP_REVIEW_RESPONSE.md`.
+
 ### MCP-0032
 - Date: 2026-09-12
 - Agent: Claude (Sonnet 5), session "training tutorial GOT IT fix"
